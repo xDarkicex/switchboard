@@ -186,6 +186,11 @@ func (s *Server) logCall(c *nanite.Context, next func()) {
 	_ = tieLine
 }
 
+func formatTags(t dimensions.Tags) string {
+	return fmt.Sprintf("length=%s complexity=%s style=%s quality=%s camera=%s physics=%s refs=%s cost=%s",
+		t.Length, t.Complexity, t.Style, t.Quality, t.Camera, t.Physics, t.Refs, t.Cost)
+}
+
 func truncate(s string, n int) string {
 	if len(s) <= n {
 		return s
@@ -233,6 +238,10 @@ func (s *Server) classifyAndRoute() nanite.MiddlewareFunc {
 		c.Set("switchboard.provider", providerName)
 		c.Set("switchboard.model", modelName)
 		c.Set("switchboard.body", body)
+		// Stamp the response so callers can see the operator's decision.
+		c.Writer.Header().Set("X-Operator-Provider", providerName)
+		c.Writer.Header().Set("X-Operator-Model", modelName)
+		c.Writer.Header().Set("X-Operator-Tags", formatTags(tags))
 		next()
 	}
 }
