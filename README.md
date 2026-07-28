@@ -1,4 +1,8 @@
 <p align="center">
+  <img src="assets/banner_v1.png" alt="switchboard" width="640">
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/go-1.25.7-00ADD8?style=flat-square&logo=go" alt="Go 1.25.7">
   <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="MIT License">
   <img src="https://img.shields.io/badge/classifier-steady-8A2BE2?style=flat-square" alt="steady classifier">
