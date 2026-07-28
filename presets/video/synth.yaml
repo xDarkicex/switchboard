@@ -1,0 +1,683 @@
+seed: 42
+
+# Vocabulary drawn from the 136+ real prompts supplied by the user.
+# Templates can reference these directly via slot names. Generated prompts
+# use real-world cinematography vocabulary (lens specs, time markers, audio
+# cues, lighting rigs) so the pipeline classifier learns the language
+# production teams actually use.
+
+vocabulary:
+  cameras:
+    - "slow dolly-in"
+    - "whip pan"
+    - "rack focus from X to Y"
+    - "handheld tracking"
+    - "smooth orbital"
+    - "static wide shot"
+    - "extreme close-up"
+    - "low-angle tracking"
+    - "high-angle drone"
+    - "slow push-in"
+    - "first-person view"
+    - "POV"
+    - "FPV drone dive"
+    - "locked-off static"
+    - "smooth crane rise"
+  lighting:
+    - "golden hour"
+    - "blue hour"
+    - "high-key studio"
+    - "low-key cinematic"
+    - "rim lighting"
+    - "volumetric haze"
+    - "neon-drenched"
+    - "natural window light"
+    - "warm amber key with cool blue fill"
+    - "anamorphic lens flares"
+    - "rain-soaked reflections"
+    - "underwater caustics"
+    - "specular highlights"
+  audio:
+    ambient:
+      - "rain on metal"
+      - "wind through trees"
+      - "city hum"
+      - "ocean waves"
+      - "forest birdsong"
+      - "thunder rumble"
+      - "snow silence"
+      - "underwater ambience"
+    music:
+      - "orchestral swell"
+      - "lo-fi piano"
+      - "synthwave"
+      - "ambient drone"
+      - "cinematic score"
+      - "EDM beat"
+      - "jazz saxophone"
+    sfx:
+      - "sizzle"
+      - "glass shatter"
+      - "thunder crack"
+      - "sword clash"
+      - "footsteps on gravel"
+      - "wind gust"
+      - "splash"
+      - "engine roar"
+  film_stocks:
+    cinematic: ["35mm film grain", "ARRI ALEXA 65", "RED Komodo", "65mm large format", "anamorphic 2.39:1"]
+    photorealistic: ["8K digital cinema", "4K RAW", "Sony Venice"]
+    animation: ["Pixar-style 3D render", "Studio Ghibli render", "Studio Trigger style"]
+  quality:
+    - "4K"
+    - "8K"
+    - "1080p"
+    - "60fps"
+    - "24fps"
+    - "120fps slow-motion"
+    - "240fps high-speed"
+
+# Intents — coherent combinations of dimensions with templates and slots.
+# Each intent produces Examples with the intent's Tags.
+
+intents:
+  - name: simple_short_photorealistic
+    templates:
+      - "Make a video of {subject}"
+      - "{duration} clip of {subject}"
+      - "Cinematic shot of {subject}, {lighting}"
+      - "Natural light video of {subject}"
+    slots:
+      subject: [
+        "sunset over the ocean",
+        "bird flying through the sky",
+        "person walking down a street",
+        "flower blooming in time lapse",
+        "logo fading in on white",
+        "snow falling on a forest",
+        "candle flickering in the dark",
+        "clock ticking on a wall",
+        "rain on a window",
+        "text appearing on screen",
+        "a single leaf falling",
+        "a candle being lit",
+        "a door opening slowly",
+        "a ball rolling across a table",
+        "a cup of coffee being poured",
+      ]
+      duration: ["3 seconds", "4 seconds", "5 seconds"]
+      lighting: ["natural light", "soft window light", "warm morning light"]
+    tags:
+      length: short
+      complexity: simple
+      style: photorealistic
+      quality: "4k"
+      camera: static
+      physics: none
+      refs: none
+      cost: cheap
+
+  - name: simple_short_animation
+    templates:
+      - "Pixar-style 3D animation of {subject}, {lighting}"
+      - "Anime style, {subject}, {mood} mood"
+      - "{duration} cute animation of {subject}"
+    slots:
+      subject: [
+        "a curious cat exploring a garden",
+        "a caped superhero discovering their powers",
+        "a tiny robot falling in love",
+        "a magical creature in an enchanted forest",
+      ]
+      duration: ["3 seconds", "5 seconds"]
+      lighting: ["warm studio light", "soft pastel glow", "cozy morning light"]
+      mood: ["whimsical", "heartwarming", "playful"]
+    tags:
+      length: short
+      complexity: simple
+      style: animation
+      quality: "4k"
+      camera: static
+      physics: none
+      refs: none
+      cost: cheap
+
+  - name: simple_short_3d
+    templates:
+      - "Octane render of {subject}, studio softbox lighting"
+      - "Three.js WebGL aesthetic of {subject}, dark environment"
+      - "{duration} 3D product render of {subject}, {lighting}"
+    slots:
+      subject: [
+        "a brushed titanium watch floating in a void",
+        "a glass tetrahedron orbiting a glowing core",
+        "a luxury perfume bottle rotating slowly",
+      ]
+      duration: ["3 seconds", "5 seconds"]
+      lighting: ["strip lights", "HDRI lighting", "studio softbox"]
+    tags:
+      length: short
+      complexity: simple
+      style: "3d"
+      quality: "8k"
+      camera: orbital
+      physics: none
+      refs: none
+      cost: cheap
+
+  - name: simple_short_motion_graphics
+    templates:
+      - "Kinetic typography motion graphic: bold text {text} slamming onto screen"
+      - "Clean motion graphic, {subject}"
+      - "Vector animation, {subject}, {duration}"
+    slots:
+      text: ["\"BUILD\"", "\"SHIP\"", "\"SCALE\"", "\"AI\"", "\"FOCUS\""]
+      subject: [
+        "a glowing bar chart rising from a dark grid",
+        "typography exploding on beat",
+        "geometric shapes pulsing in time",
+      ]
+      duration: ["3 seconds", "4 seconds"]
+    tags:
+      length: short
+      complexity: simple
+      style: motion_graphics
+      quality: "4k"
+      camera: static
+      physics: none
+      refs: none
+      cost: cheap
+
+  - name: medium_cinematic_dolly
+    templates:
+      - "{duration} cinematic {camera} shot of {subject}, {lighting}, {audio}"
+      - "Cinematic {duration} shot: {subject}, {camera}, {lighting}"
+    slots:
+      duration: ["8 seconds", "10 seconds"]
+      camera: ["slow dolly-in", "handheld tracking", "slow push-in"]
+      subject: [
+        "a chef plating a gourmet dish in a modern kitchen",
+        "a vintage red Mustang driving down a desert highway",
+        "a detective in a trench coat walking through a rain-soaked alley",
+        "a woman in a red dress walking through a neon-lit Tokyo street",
+        "a woman in a cream wool coat walking through a forest path",
+      ]
+      lighting: ["neon-drenched", "golden hour", "wet reflections", "rain-soaked"]
+      audio: ["ambient city sounds", "wet neon reflections", "subtle orchestral score"]
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: "4k"
+      camera: dolly
+      physics: fluid
+      refs: none
+      cost: medium
+
+  - name: medium_cinematic_tracking
+    templates:
+      - "{duration} cinematic shot of {subject}, {camera}, {lighting}"
+      - "Tracking {duration} shot: {subject}, {audio}"
+    slots:
+      duration: ["8 seconds", "10 seconds", "12 seconds"]
+      camera: ["handheld tracking", "low-angle tracking", "smooth gimbal"]
+      subject: [
+        "a vintage red Mustang driving down Route 66 at dusk",
+        "a chef in a yellow raincoat hauling a fishing net",
+        "a skateboarder grinding a rail in an empty skatepark at night",
+        "a fashion model walking through a glowing tunnel of LED strips",
+        "a horse galloping across an open field at golden hour",
+      ]
+      lighting: ["golden hour", "neon-drenched", "spotlights"]
+      audio: ["ambient orchestral", "wet neon reflections", "engine roar"]
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: "4k"
+      camera: tracking
+      physics: particle
+      refs: none
+      cost: medium
+
+  - name: medium_animation_pixar
+    templates:
+      - "Pixar-style 3D animation, {duration} shot: {subject}, {lighting}, {audio}"
+      - "Studio Ghibli style {duration} shot, {subject}, {mood}"
+    slots:
+      duration: ["8 seconds", "10 seconds"]
+      subject: [
+        "a young fox in a yellow raincoat pushing open a giant red door into a glowing library",
+        "a round orange tabby cat on a sunny windowsill watching a leaf fall",
+        "two chibi characters in a colorful arena facing off",
+        "a small white child robot standing in a field of flowers at sunset",
+      ]
+      lighting: ["warm volumetric god-rays", "soft 3D-rendered surfaces", "cozy pastel"]
+      audio: ["gentle orchestral", "soft piano", "playful bounce"]
+      mood: ["heartwarming", "whimsical", "dreamy"]
+    tags:
+      length: medium
+      complexity: simple
+      style: animation
+      quality: "4k"
+      camera: static
+      physics: basic
+      refs: none
+      cost: medium
+
+  - name: medium_3d_cgi_product
+    templates:
+      - "{duration} CGI render: {subject}, {lighting}, {film_stocks}"
+      - "Three.js aesthetic: {subject}, {duration}"
+    slots:
+      duration: ["6 seconds", "8 seconds"]
+      subject: [
+        "matte-black wireless earbuds floating and rotating in dark void",
+        "exploded mechanical watch movement with gears pulling apart along z-axis",
+        "glass tetrahedron orbiting a glowing core with chromatic aberration",
+        "sleek matte-black phone case unfolding into 3D wireframe of phone inside",
+      ]
+      lighting: ["studio softbox", "HDRI environment", "strip lights"]
+      film_stocks: ["Octane render", "8K product viz", "Unreal Engine 5"]
+    tags:
+      length: medium
+      complexity: simple
+      style: "3d"
+      quality: "8k"
+      camera: orbital
+      physics: basic
+      refs: none
+      cost: medium
+
+  - name: medium_motion_graphics_infographic
+    templates:
+      - "{duration} clean motion graphic: {subject}, {font}"
+      - "Infographic motion graphic: {subject}, {duration}"
+    slots:
+      duration: ["8 seconds", "10 seconds"]
+      subject: [
+        "an isometric 3D glowing bar chart rising from a dark slate grid",
+        "data streams flowing along vector pathways connecting bars",
+        "animated bar chart growing left-to-right showing latency dropping",
+        "flat design icons assembling on a dark grid connecting with animated lines",
+      ]
+      font: ["sans-serif", "monospace", "bold condensed"]
+    tags:
+      length: medium
+      complexity: simple
+      style: motion_graphics
+      quality: "4k"
+      camera: tracking
+      physics: none
+      refs: none
+      cost: medium
+
+  - name: multi_stage_cinematic_narrative
+    templates:
+      - "Continuous {duration} cinematic shot. [{stages}]"
+      - "Multi-shot {duration} cinematic sequence: [{stages}]"
+    slots:
+      duration: ["8-second", "10-second", "12-second", "15-second"]
+      stages: [
+        "0:00-0:02] {scene1}. [0:02-0:05] {scene2}. [0:05-0:08] {scene3}",
+        "0:00-0:03] {scene1}. [0:03-0:06] {scene2}. [0:06-0:10] {scene3}",
+      ]
+      scene1: [
+        "Wide shot of {setting} at {time}",
+        "Extreme close-up of {detail}",
+        "Slow dolly-in to {subject}",
+      ]
+      scene2: [
+        "Mid-shot of {action}",
+        "Whip pan to reveal {revelation}",
+        "Camera orbits around {subject}",
+      ]
+      scene3: [
+        "Wide reveal of {scope}",
+        "Pull-back to show {context}",
+        "Close-up on {emotion}",
+      ]
+      setting: ["a misty medieval castle at dawn", "an empty neon diner at 2am", "a futuristic megacity at night"]
+      time: ["golden hour", "dusk", "midnight"]
+      detail: ["a pocket watch ticking", "rain on a window", "an old leather book"]
+      subject: ["a knight in silver armor", "a figure in a long coat", "a woman in a red dress"]
+      action: ["a pale zombie sprints", "a samurai draws a katana", "a chef plates a dish"]
+      revelation: ["a hidden door opens", "a dragon emerges", "a city falls away"]
+      scope: ["an epic battlefield", "a vast cosmos", "a crowded marketplace"]
+      context: ["the same room, but empty", "an aerial view", "a child watching"]
+      emotion: ["determination in the eyes", "a tear forms", "a smile breaks"]
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - name: multi_stage_animation_pixar
+    templates:
+      - "{duration} 3D animated sequence: [{stages}]"
+    slots:
+      duration: ["10-second", "12-second", "15-second"]
+      stages: [
+        "0:00-0:03] {scene1}. [0:03-0:06] {scene2}. [0:06-0:10] {scene3}",
+      ]
+      scene1: ["A friendly robot stands in a flower field", "Two curious characters meet in a magical forest"]
+      scene2: ["An adventure begins as they walk together", "A challenge presents itself"]
+      scene3: ["They triumph together in a moment of joy", "They discover a hidden treasure"]
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: animation
+      quality: production-grade
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - name: multi_stage_3d_ue5
+    templates:
+      - "{duration} Unreal Engine 5 cinematic: [{stages}]"
+    slots:
+      duration: ["10-second", "12-second", "15-second"]
+      stages: [
+        "0:00-0:03] {scene1}. [0:03-0:06] {scene2}. [0:06-0:10] {scene3}",
+      ]
+      scene1: ["Aerial drone shot over a fantasy castle at dawn", "Wide shot of a spaceship interior"]
+      scene2: ["A knight in armor draws a sword", "A mech-engineer examines holographic schematics"]
+      scene3: ["A dragon circles overhead, fire erupts", "The camera pulls back revealing the full station"]
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: "3d"
+      quality: production-grade
+      camera: orbital
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - name: multi_stage_motion_graphics
+    templates:
+      - "{duration} kinetic typography sequence: [{stages}]"
+    slots:
+      duration: ["8-second", "10-second"]
+      stages: [
+        "0:00-0:02] {scene1}. [0:02-0:05] {scene2}. [0:05-0:08] {scene3}",
+      ]
+      scene1: ["Bold white text \"BUILD\" slams onto dark background"]
+      scene2: ["Text splits into \"BUILD\" \"SHIP\" \"SCALE\" with elastic bounce"]
+      scene3: ["Final phrase locks center with neon glow"]
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: motion_graphics
+      quality: production-grade
+      camera: static
+      physics: none
+      refs: none
+      cost: medium
+
+  - name: refs_image_subject
+    templates:
+      - "[Inputs: Character = #{subject_ref}.png] {duration} cinematic shot of {subject_ref}, {camera}, {lighting}"
+      - "Use the reference image {subject_ref} as the subject: {duration} shot, {camera}"
+    slots:
+      duration: ["8 seconds", "10 seconds"]
+      subject_ref: ["@Image1", "@Image2", "@Image3"]
+      subject: ["a young woman in a tan coat", "a knight in silver armor", "an elderly sailor"]
+      camera: ["slow dolly-in", "tracking shot", "slow push-in"]
+      lighting: ["golden hour", "soft window light", "low-key cinematic"]
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: basic
+      refs: image
+      cost: expensive
+
+  - name: refs_video_motion
+    templates:
+      - "[Inputs: Motion Reference = #{video_ref}.mp4] {duration} shot replicating the exact camera and character motion from {video_ref}, with {subject}"
+      - "Use {video_ref} as the motion reference: {duration} shot of {subject}"
+    slots:
+      duration: ["8 seconds", "10 seconds"]
+      video_ref: ["@Video1", "@Video2"]
+      subject: ["a medieval knight in plate armor", "a dancer in flowing silks", "a samurai with katana"]
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: particle
+      refs: video
+      cost: expensive
+
+  - name: refs_audio_lipsync
+    templates:
+      - "[Inputs: Audio = #{audio_ref}.wav] {duration} lip-sync dialogue scene: {subject} speaks directly to camera, mouth moving precisely to {audio_ref}"
+      - "Use {audio_ref} as the audio driver: {duration} shot of {subject}"
+    slots:
+      duration: ["8 seconds", "10 seconds"]
+      audio_ref: ["@Audio1", "@Audio2"]
+      subject: ["a woman in her 30s in a warm studio", "a man in a black polo", "a jazz musician playing sax"]
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: static
+      physics: basic
+      refs: audio
+      cost: medium
+
+  - name: refs_multi_modal
+    templates:
+      - "[Inputs: Character = #{image_ref}, Camera = #{video_ref}, Audio = #{audio_ref}] {duration} dynamic music video: character {image_ref} performs the tracking camera movement from {video_ref}, lighting shifts in time with {audio_ref}"
+      - "Multi-modal {duration}: {image_ref} as subject, {video_ref} as camera reference, {audio_ref} as audio driver"
+    slots:
+      duration: ["8 seconds", "10 seconds"]
+      image_ref: ["@Image1", "@Image2"]
+      video_ref: ["@Video1", "@Video2"]
+      audio_ref: ["@Audio1", "@Audio2"]
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: basic
+      refs: multi
+      cost: expensive
+
+  - name: expensive_cinematic
+    templates:
+      - "{duration} cinematic {film_stocks} shot of {subject}, {camera}, {lighting}, {audio}"
+      - "Production-grade {duration} cinematic: {subject}, {camera}, {lighting}, {film_stocks}"
+    slots:
+      duration: ["10 seconds", "12 seconds", "15 seconds"]
+      film_stocks: ["35mm film grain", "ARRI ALEXA 65", "anamorphic 2.39:1"]
+      subject: [
+        "a distinguished man in a navy linen suit standing at a yacht railing",
+        "a fox in a misty forest at golden hour",
+        "a geisha walking through a Kyoto alley in the rain",
+        "a lone astronaut on the surface of Mars",
+      ]
+      camera: ["slow dolly-in", "handheld tracking", "wide aerial"]
+      lighting: ["golden hour", "rain-soaked reflections", "volumetric haze"]
+      audio: ["orchestral swell", "ambient piano", "cinematic score"]
+    tags:
+      length: long
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - name: expensive_3d_octane
+    templates:
+      - "{duration} Octane render of {subject}, {lighting}, {film_stocks}"
+      - "Hyper-detailed 3D CAD visualization: {subject}, {duration}"
+    slots:
+      duration: ["8 seconds", "10 seconds"]
+      subject: [
+        "complex mechanical watch movement exploded along z-axis",
+        "luxury sports car on glossy black turntable with softbox light sweep",
+        "glass tetrahedron orbiting a glowing core with chromatic aberration",
+        "futuristic weapon floating in dark void with caustic refractions",
+      ]
+      lighting: ["studio softbox", "HDRI environment", "ambient occlusion"]
+      film_stocks: ["Octane render", "8K product viz", "Unreal Engine 5"]
+    tags:
+      length: medium
+      complexity: simple
+      style: "3d"
+      quality: "8k"
+      camera: orbital
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - name: expensive_animation_pixar
+    templates:
+      - "{duration} Pixar-style 3D animation: {subject}, {lighting}, {audio}"
+      - "Heartwarming {duration} animated short: {subject}"
+    slots:
+      duration: ["10 seconds", "12 seconds"]
+      subject: [
+        "a small rusty robot that gives up its battery to revive a broken mechanical puppy",
+        "a young fox in a yellow raincoat entering a magical library where books float like birds",
+        "a small child robot and parent robot walking together through a flower field at sunset",
+        "a curious caped superhero discovering their powers for the first time",
+      ]
+      lighting: ["warm volumetric god-rays", "soft 3D-rendered surfaces", "heartwarming golden hour"]
+      audio: ["emotional orchestral score", "soft piano", "ambient woodland"]
+    tags:
+      length: long
+      complexity: multi_stage
+      style: animation
+      quality: production-grade
+      camera: dolly
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - name: cheap_short_photorealistic
+    templates:
+      - "{subject}"
+      - "{duration} clip of {subject}, {lighting}"
+    slots:
+      duration: ["2 seconds", "3 seconds", "4 seconds"]
+      subject: [
+        "Golden retriever running through a sunny park, slow motion",
+        "Coffee being poured into a white ceramic mug, steam rising",
+        "Wet neon Tokyo street reflection, static, 3s",
+        "Single candle flame flicker, black background, close-up",
+        "Cat slow blink on sunny windowsill",
+        "Steam rising from a teacup, macro",
+        "Honey dripping from a spoon, slow motion",
+        "Ice cube dropping into a glass of water, splash",
+      ]
+      lighting: ["natural light", "soft window light", "morning light"]
+    tags:
+      length: short
+      complexity: simple
+      style: photorealistic
+      quality: basic
+      camera: static
+      physics: basic
+      refs: none
+      cost: cheap
+
+  - name: cheap_short_cinematic
+    templates:
+      - "{subject}"
+      - "Drone shot of {subject}, {lighting}"
+    slots:
+      subject: [
+        "Drone shot over forest mountain ridge at sunrise, golden hour lighting, 24fps, cinematic 4k",
+        "Clouds drifting slowly over blue sky, static locked shot, 5s",
+        "Snow falling gently on dark background, 3s",
+        "Small wave rolling onto wet sand, slow, 4s",
+      ]
+      lighting: ["golden hour", "natural light", "soft morning light"]
+    tags:
+      length: short
+      complexity: simple
+      style: cinematic
+      quality: basic
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: cheap
+
+  - name: cheap_short_animation
+    templates:
+      - "{subject}"
+      - "Anime style, {subject}, {duration}"
+    slots:
+      duration: ["3 seconds", "4 seconds"]
+      subject: [
+        "rain falling on a windowpane at night, city neon lights blurred in background",
+        "Lo-fi anime girl looking out a rainy train window at night",
+        "2D animation of a leaf falling",
+        "Vector animation of geometric shapes pulsing",
+      ]
+    tags:
+      length: short
+      complexity: simple
+      style: animation
+      quality: basic
+      camera: static
+      physics: fluid
+      refs: none
+      cost: cheap
+
+  - name: cheap_short_3d
+    templates:
+      - "{subject}"
+      - "Three.js aesthetic, {subject}, {duration}"
+    slots:
+      duration: ["3 seconds", "5 seconds"]
+      subject: [
+        "geometric dark glass ribbons twisting in 3D space, chromatic edges",
+        "concentric geometric rings pulsing and rotating slowly in dark background",
+        "abstract neon circle pulse on dark background, seamless loop",
+      ]
+    tags:
+      length: short
+      complexity: simple
+      style: "3d"
+      quality: basic
+      camera: static
+      physics: none
+      refs: none
+      cost: cheap
+
+  - name: cheap_short_motion_graphics
+    templates:
+      - "{subject}"
+      - "Simple motion graphic: {subject}"
+    slots:
+      subject: [
+        "white text \"HELLO\" fading in center on black, 2s",
+        "simple checkmark drawing itself green, 2s",
+        "thin progress bar filling left to right, 3s",
+        "Lower-third name slide-up with thin blue line, 3s",
+        "Soft gradient shift blue to purple, 3s",
+      ]
+    tags:
+      length: short
+      complexity: simple
+      style: motion_graphics
+      quality: basic
+      camera: static
+      physics: none
+      refs: none
+      cost: cheap

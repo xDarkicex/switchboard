@@ -1,0 +1,22 @@
+# Build artifacts
+/switchboard
+/switchboard-*
+/bin/
+/import-vidprom
+/train-pipeline
+
+# Generated training data + models
+/models/
+/*.bin
+/presets/*/training.txt
+
+# Test caches
+*.test
+*.out
+coverage.out
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp

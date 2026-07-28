@@ -1,0 +1,63 @@
+server:
+  listen: ":9090"
+  read_timeout: 5s
+  write_timeout: 60s
+  idle_timeout: 60s
+
+pipeline:
+  length:     {model_path: "./models/length.bin",     default: medium,  labels: [short, medium, long, multi_stage]}
+  complexity: {model_path: "./models/complexity.bin", default: simple,   labels: [simple, multi_subject, multi_stage, medium]}
+  style:      {model_path: "./models/style.bin",      default: cinematic, labels: [cinematic, photorealistic, animation, "3d", motion_graphics]}
+  quality:    {model_path: "./models/quality.bin",    default: "4k",    labels: ["4k", "8k", basic, production-grade]}
+  camera:     {model_path: "./models/camera.bin",     default: dolly,    labels: [static, dolly, tracking, orbital, fpv]}
+  physics:    {model_path: "./models/physics.bin",    default: basic,    labels: [none, basic, particle, fluid, cloth]}
+  refs:       {model_path: "./models/refs.bin",       default: none,    labels: [none, image, video, audio, multi]}
+  cost:       {model_path: "./models/cost.bin",       default: medium,  labels: [cheap, medium, expensive]}
+
+routing: "./presets/video/routing.yaml"
+
+providers:
+  - name: runway
+    base_url: "https://api.runwayml.com/v1"
+    auth: {type: bearer, env: RUNWAY_API_KEY}
+    models:
+      - name: gen-3
+        cost_per_sec: 0.05
+        max_duration: 10
+        capabilities: [photorealistic, animation, motion_graphics, simple, short, medium]
+      - name: gen-4
+        cost_per_sec: 0.12
+        max_duration: 30
+        capabilities: [photorealistic, cinematic, animation, "3d", simple, multi_subject, short, medium, long]
+
+  - name: openai
+    base_url: "https://api.openai.com/v1"
+    auth: {type: bearer, env: OPENAI_API_KEY}
+    models:
+      - name: sora
+        cost_per_sec: 0.15
+        max_duration: 60
+        capabilities: [photorealistic, cinematic, animation, "3d", simple, multi_subject, multi_stage, short, medium, long, multi_stage, production-grade, "8k"]
+
+  - name: kling
+    base_url: "https://api.klingai.com/v1"
+    auth: {type: bearer, env: KLING_API_KEY}
+    models:
+      - name: kling-2
+        cost_per_sec: 0.07
+        max_duration: 30
+        capabilities: [cinematic, photorealistic, "3d", multi_subject, short, medium, long, fpv, particle, fluid]
+
+  - name: stability
+    base_url: "https://api.stability.ai/v2beta"
+    auth: {type: bearer, env: STABILITY_API_KEY}
+    models:
+      - name: stable-video
+        cost_per_sec: 0.03
+        max_duration: 25
+        capabilities: [photorealistic, "3d", motion_graphics, simple, short, medium]
+
+defaults:
+  provider: runway
+  model: gen-3
+  timeout: 30s

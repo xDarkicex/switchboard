@@ -1,0 +1,55 @@
+rules:
+  - name: sora_multimodal_expensive
+    match:
+      refs: [video, multi, image]
+    match_any:
+      - quality: [production-grade]
+      - length: [multi_stage]
+    provider: openai
+    model: sora
+
+  - name: sora_long_high_quality
+    match:
+      length: [long, multi_stage]
+      quality: [production-grade, "8k"]
+    provider: openai
+    model: sora
+
+  - name: kling_dynamic_fpv
+    match:
+      camera: [fpv]
+    provider: kling
+    model: kling-2
+
+  - name: kling_particle_heavy
+    match_any:
+      - physics: [particle, fluid]
+    match:
+      length: [long, medium]
+    provider: kling
+    model: kling-2
+
+  - name: stability_cheap_3d
+    match:
+      style: ["3d"]
+    match_any:
+      - cost: [cheap]
+    provider: stability
+    model: stable-video
+
+  - name: runway_animation
+    match_any:
+      - style: [animation]
+      - style: [motion_graphics]
+    provider: runway
+    model: gen-3
+
+  - name: runway_photorealistic
+    match:
+      style: [photorealistic]
+    provider: runway
+    model: gen-4
+
+  - name: runway_fallback
+    provider: runway
+    model: gen-3

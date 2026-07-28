@@ -1,0 +1,3268 @@
+# presets/video/real_prompts.yaml
+# Ground-truth prompt corpus for the video classifier pipeline.
+# Each entry has a text and eight dimension tags. The synth generator reads
+# this file and emits one steady training line per tag.
+#
+# Valid values for each dimension:
+#   length:     short | medium | long | multi_stage
+#   complexity: simple | multi_subject | multi_stage
+#   style:      photorealistic | cinematic | 3d | animation | motion_graphics
+#   quality:    basic | 4k | 8k | production-grade
+#   camera:     static | dolly | tracking | orbital | fpv
+#   physics:    none | basic | particle | cloth | fluid
+#   refs:       none | image | video | multi
+#   cost:       cheap | medium | expensive
+#
+# Add new entries by copying an existing one and pasting a new prompt +
+# annotation. The classifier should learn the patterns from this file as
+# the highest-quality signals; synthetic data from synth.yaml fills the gaps.
+
+prompts:
+  - id: level-1-fox
+    source: "user-provided"
+    text: |
+      Cinematic 4k shot. A majestic red fox stands on a mossy rock in an autumn forest. The camera slowly dollies in towards the fox while its ears twitch slightly. Soft morning sunlight filtering through yellow leaves, light mist in the background. Photorealistic, 24fps, 16:9 aspect ratio.
+    tags:
+      length: short
+      complexity: simple
+      style: photorealistic
+      quality: "4k"
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: medium
+
+  - id: level-2-storm
+    source: "user-provided"
+    text: |
+      Wide drone shot gliding slowly across a dark, stormy ocean toward a isolated lighthouse on a cliff. High waves crashing against black volcanic rocks, creating realistic sea foam spray. Dynamic overcast lighting with breaks of warm golden light on the horizon. High realism, 8k resolution, cinematic color grading with cool teal shadows and warm highlights, subtle camera roll, 5-second duration.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: photorealistic
+      quality: "8k"
+      camera: tracking
+      physics: fluid
+      refs: none
+      cost: medium
+
+  - id: level-3-coffee-mug
+    source: "user-provided"
+    text: |
+      High-end commercial macro shot. A sleek black matte ceramic coffee mug sits on a dark oak table. Dense, realistic steam rises smoothly from hot espresso inside. The camera performs a tight 180-degree orbit around the mug. Key light from camera left creates soft highlights along the rim. Shallow depth of field with 85mm f/1.4 lens aesthetics, 60fps slow-motion feel, ultra-realistic texture.
+    tags:
+      length: short
+      complexity: simple
+      style: photorealistic
+      quality: "8k"
+      camera: orbital
+      physics: fluid
+      refs: none
+      cost: medium
+
+  - id: level-4-rally
+    source: "user-provided"
+    text: |
+      Low-angle tracking shot following a dirty rally car drifting around a sharp gravel corner at sunset. Dry dust and small rocks fly off the rear tires towards the viewer with realistic motion blur. The camera pans dynamically to keep the car centered as it exits the bend into a straightaway. Sunset warm lighting, realistic suspension bounce, 35mm film grain, dynamic shutter speed.
+    tags:
+      length: short
+      complexity: simple
+      style: photorealistic
+      quality: "4k"
+      camera: tracking
+      physics: particle
+      refs: none
+      cost: medium
+
+  - id: level-5-repair-tech
+    source: "user-provided"
+    text: |
+      Cinematic medium close-up of a 30-year-old female repair technician in a damp subway station. Soft cool neon light reflects off wet tile behind her. She slowly wipes grease off her brow with her forearm, her eyes shifting from intense frustration to a subtle nod of realization. Natural skin texture, visible pores, damp hair strands clinging to her temple. Shallow depth of field, natural frame rate, raw documentary style.
+    tags:
+      length: medium
+      complexity: simple
+      style: photorealistic
+      quality: "4k"
+      camera: static
+      physics: basic
+      refs: none
+      cost: medium
+
+  - id: level-6-scavenger
+    source: "user-provided"
+    text: |
+      Live-action sci-fi film still animation. Anamorphic 2.39:1 framing. A lone scavenger in a distressed leather trench coat walks down a narrow Tokyo-style alley at night under torrential rain. Vibrant cyan and magenta neon signs reflect off wet pavement and puddles. The camera tracks backward ahead of the character at eye level. Anamorphic blue horizontal lens flares, 40mm prime lens look, photorealistic water droplet interaction on clothes.
+    tags:
+      length: medium
+      complexity: medium
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: level-7-baker
+    source: "user-provided"
+    text: |
+      Dynamic medium shot. An artisan baker in a flour-dusted apron slams a lump of sourdough dough onto a wooden butcher block. A cloud of fine flour particles explodes upward and hovers in a beam of morning sunlight streaming from a side window. The camera holds static for 1 second, then slowly tilts down as the baker folds the dough over itself. Realistic physics, high particle detail, warm natural color palette.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: photorealistic
+      quality: "4k"
+      camera: static
+      physics: particle
+      refs: none
+      cost: medium
+
+  - id: level-8-muscle-car
+    source: "user-provided"
+    text: |
+      Continuous 8-second cinematic shot.
+      [0:00-0:02] Wide shot of an empty, rain-slicked desert highway at dusk. Wind rustles dry tumbleweeds across the asphalt.
+      [0:02-0:05] Headlights break the darkness in the distance as a vintage 1970 muscle car accelerates toward the camera.
+      [0:05-0:08] The camera rapidly lowers to ground level as the car roars directly over the lens, engine reverberation, red taillights streaking into the dark. Warm sunset tones transitioning to deep night blues.
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: level-9-fpv-skyscraper
+    source: "user-provided"
+    text: |
+      First-person perspective (FPV drone shot). Rapidly diving down the side of a glass skyscraper in a futuristic neon metropolis. Camera accelerates vertically downward, skimming within inches of the reflective glass facade, showing distorted reflections of flying vehicles. At 50 feet above ground, the camera abruptly pulls up into a smooth 90-degree horizon level sweep through a crowded night market. Hyper-kinetic motion blur, subtle lens distortion, realistic spatial sound environment simulation.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: fpv
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: level-10-multi-modal
+    source: "user-provided"
+    text: |
+      [Reference Constraints: Subject = @image-1, Environment = @image-2, Camera Logic = @video-1]
+
+      Master Shot Script:
+      A continuous 10-second shot starring character @image-1 situated inside the sci-fi command deck of @image-2.
+
+      Camera Execution:
+      Match the push-in and orbital arc rate of @video-1. Start with an over-the-shoulder wide shot framing @image-1 looking at a glowing holographic star map. At t=3s, execute a tight arc dolly around @image-1's left side to reveal a frontal close-up.
+
+      Lighting & Style:
+      Key light from hologram casting dynamic blue flickering illumination across the face. Rim light from red emergency conduits in background.
+
+      Physics & Detailing:
+      Realistic fabric movement on jacket as character turns head at t=6s. Catchlights in eyes. Micro-expressions showing rising concern. Output format: 16:9, 24fps, cinematic master grade, no motion warping artifacts.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: orbital
+      physics: cloth
+      refs: multi
+      cost: expensive
+
+  - id: p1-perfume-rotation
+    source: "user-provided"
+    text: |
+      A ceramic perfume bottle sits on a reflective black surface, rotating slowly.
+    tags:
+      length: short
+      complexity: simple
+      style: photorealistic
+      quality: basic
+      camera: static
+      physics: none
+      refs: none
+      cost: cheap
+
+  - id: p2-cat-pounce
+    source: "user-provided"
+    text: |
+      A fluffy orange cat stretches lazily and pounces toward the camera.
+    tags:
+      length: short
+      complexity: simple
+      style: photorealistic
+      quality: basic
+      camera: static
+      physics: basic
+      refs: none
+      cost: cheap
+
+  - id: p3-portrait-laugh
+    source: "user-provided"
+    text: |
+      A 26-year-old woman with curly hair, wearing a denim jacket, laughing while looking at her phone in a bright coffee shop.
+    tags:
+      length: short
+      complexity: simple
+      style: photorealistic
+      quality: basic
+      camera: static
+      physics: basic
+      refs: none
+      cost: cheap
+
+  - id: p4-watch-rotation
+    source: "user-provided"
+    text: |
+      A luxury watch rotates slowly on a black marble surface, soft studio lighting.
+    tags:
+      length: short
+      complexity: simple
+      style: photorealistic
+      quality: production-grade
+      camera: static
+      physics: none
+      refs: none
+      cost: medium
+
+  - id: p5-tokyo-walk
+    source: "user-provided"
+    text: |
+      A young woman walks through a neon-lit Tokyo alley at night, reflections on wet pavement.
+    tags:
+      length: short
+      complexity: simple
+      style: photorealistic
+      quality: basic
+      camera: static
+      physics: fluid
+      refs: none
+      cost: medium
+
+  - id: p6-coastal-drone
+    source: "user-provided"
+    text: |
+      Drone shot flying over a coastal highway at golden hour, waves crashing on rocks below, smooth cinematic glide, slight lens flare.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: cinematic
+      quality: "4k"
+      camera: tracking
+      physics: fluid
+      refs: none
+      cost: medium
+
+  - id: p7-chef-plating
+    source: "user-provided"
+    text: |
+      A chef plating a gourmet dish in a modern restaurant kitchen, steam and sauce drizzle in slow motion, dramatic side lighting, food commercial style.
+    tags:
+      length: medium
+      complexity: simple
+      style: photorealistic
+      quality: "4k"
+      camera: static
+      physics: fluid
+      refs: none
+      cost: medium
+
+  - id: p8-cyberpunk-alley
+    source: "user-provided"
+    text: |
+      Cyberpunk alley at night, rain falling, holographic ads flickering on walls, a figure in a long coat walking toward camera, neon pink and blue, anamorphic lens, film grain.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: p9-bamboo-forest
+    source: "user-provided"
+    text: |
+      First-person view walking through a dense bamboo forest, sunlight filtering through leaves, gentle camera sway, ambient birdsong feel, natural color grade.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: "4k"
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: medium
+
+  - id: p10-mustang-route66
+    source: "user-provided"
+    text: |
+      A vintage red 1967 Mustang driving down Route 66 at dusk, dust trailing behind, low-angle tracking shot, warm orange sky, cinematic color grade.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: "4k"
+      camera: tracking
+      physics: particle
+      refs: none
+      cost: medium
+
+  - id: p11-honeybee-macro
+    source: "user-provided"
+    text: |
+      Macro shot of a honeybee landing on a purple lavender flower, pollen visible on legs, shallow depth of field, soft bokeh background, nature documentary style, ultra-sharp detail.
+    tags:
+      length: short
+      complexity: simple
+      style: photorealistic
+      quality: "4k"
+      camera: static
+      physics: basic
+      refs: none
+      cost: medium
+
+  - id: p12-spaceship-bridge
+    source: "user-provided"
+    text: |
+      Interior of a futuristic spaceship bridge, holographic displays flickering, captain turning a chair toward the viewport showing a nebula, cool blue lighting, subtle camera push-in, sci-fi cinematic, 24fps film look.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: p13-temple-aerial
+    source: "user-provided"
+    text: |
+      Aerial orbit around a snow-covered Japanese temple at dawn, mist rolling through pine trees, soft pink sky, slow 180-degree drone move, high dynamic range.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: cinematic
+      quality: "4k"
+      camera: orbital
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: p14-skateboarder-night
+    source: "user-provided"
+    text: |
+      Street-level tracking shot following a skateboarder grinding a rail in an empty skatepark at night, dramatic spotlights, motion blur on wheels, urban grit aesthetic, handheld energy, high contrast.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: "4k"
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: medium
+
+  - id: p15-blacksmith
+    source: "user-provided"
+    text: |
+      A blacksmith hammering glowing orange metal on an anvil, sparks flying in slow motion, dark forge interior with firelight, close-up then pull back to medium shot, gritty realistic texture.
+    tags:
+      length: medium
+      complexity: simple
+      style: photorealistic
+      quality: "4k"
+      camera: dolly
+      physics: particle
+      refs: none
+      cost: medium
+
+  - id: p16-pocket-watch
+    source: "user-provided"
+    text: |
+      Opening on a close-up of an old pocket watch, hands ticking, then slow pull-back revealing a steampunk inventor's workshop filled with brass gears and glowing tubes, warm amber light, dust motes in air, cinematic 2.39:1 aspect, film grain, intricate mechanical detail.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: p17-turtle-transition
+    source: "user-provided"
+    text: |
+      Seamless transition sequence: start underwater with a sea turtle swimming through a sunlit coral reef, then camera rises through the surface into a tropical beach at golden hour, waves lapping, palm trees swaying, fluid continuous motion, National Geographic quality, rich color saturation.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: photorealistic
+      quality: "4k"
+      camera: dolly
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: p18-rooftop-helicopter
+    source: "user-provided"
+    text: |
+      Nighttime city rooftop: a young woman in a leather jacket stands at the edge looking at a sprawling neon skyline, wind moving her hair, then she turns and smiles at camera as a helicopter passes in the background with searchlight, slow push-in, shallow DOF, anamorphic bokeh, moody teal-and-orange grade, 24fps.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: p19-fantasy-battle
+    source: "user-provided"
+    text: |
+      Epic fantasy battle establishing shot: camera starts low among charging armored knights on horseback across a muddy field, then rises into a sweeping aerial reveal of two armies clashing under stormy skies with lightning, banners whipping, mud and rain particles, dynamic crane-to-drone move, desaturated gritty medieval look.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: orbital
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: p20-earbuds-hero
+    source: "user-provided"
+    text: |
+      Full commercial-style product hero: sleek matte-black wireless earbuds float and rotate in zero-gravity against a dark gradient background, then gently land on a reflective black surface as soft studio lights sweep across them, micro-scratches and brushed metal texture visible, subtle lens flares, 4K 60fps, ultra-clean product photography lighting, shallow DOF, premium tech ad aesthetic, end on logo-ready centered frame.
+    tags:
+      length: short
+      complexity: multi_subject
+      style: photorealistic
+      quality: "4k"
+      camera: orbital
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: c1-origami-crane
+    source: "user-provided"
+    text: |
+      A giant origami crane unfolds itself in mid-air above a quiet Japanese courtyard at dusk, paper edges glowing softly as it takes flight, petals falling in slow motion, ethereal lighting, gentle upward camera drift.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: "4k"
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: c2-tea-dive
+    source: "user-provided"
+    text: |
+      First-person view of diving into a colossal cup of tea; the surface tension breaks, then you swim through swirling milk clouds and lemon slices like an underwater canyon, warm amber god-rays, fluid camera, dreamlike macro-to-wide transition.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: c3-typewriter-constellations
+    source: "user-provided"
+    text: |
+      A vintage typewriter on a rainy windowsill types by itself; each keystroke releases a tiny glowing word that floats up and forms constellations in the dark room, soft desk lamp, shallow DOF, magical realism, subtle film grain.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: static
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: c4-skyscraper-tree
+    source: "user-provided"
+    text: |
+      Time-lapse of a skyscraper growing like a living tree: steel beams sprout leaves, glass windows bloom like flowers, roots crack the sidewalk, golden hour to night cycle, smooth morphing motion, surreal architecture documentary style.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: cinematic
+      quality: "4k"
+      camera: static
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: c5-sax-lily-pad
+    source: "user-provided"
+    text: |
+      A jazz saxophonist plays on a floating lily pad in the middle of a bioluminescent lake at night; every note sends ripples of blue-green light across the water and into the starry sky, slow orbiting drone shot, dreamy atmosphere.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: orbital
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: c6-book-worlds
+    source: "user-provided"
+    text: |
+      Close-up of an old leather-bound book opening; illustrations lift off the page and become fully realized miniature worlds—tiny knights gallop across the desk, a paper ocean spills over the edge, warm library light, seamless 2D-to-3D transition, whimsical stop-motion feel.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: cinematic
+      quality: "4k"
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: c7-mars-sunflower
+    source: "user-provided"
+    text: |
+      A lone astronaut plants a glowing sunflower on the surface of Mars; the flower rapidly grows into a towering bioluminescent forest that lights up the red dunes, dust storms in the distance, slow heroic push-in, epic sci-fi, high dynamic range, particle-heavy.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: c8-noir-cyberpunk-split
+    source: "user-provided"
+    text: |
+      Split-reality street scene: left half is rainy 1940s noir black-and-white, right half is hyper-saturated cyberpunk neon; a single character walks the dividing line and glitches between eras with every step, tracking side shot, anamorphic, high contrast.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: c9-vinyl-groove
+    source: "user-provided"
+    text: |
+      Macro journey inside a vinyl record groove: the camera races along the spiral as music visually appears—bass notes as deep canyons, high hats as sparkling crystal spikes, warm analog glow, dynamic speed ramps, 4K 60fps, abstract music-visual hybrid.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: cinematic
+      quality: "4k"
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: c10-lighthouse-seasons
+    source: "user-provided"
+    text: |
+      A lighthouse keeper winds the massive Fresnel lens at twilight; as it spins, each beam catches fragments of different seasons—snow, cherry blossoms, autumn leaves, summer lightning—projecting them across the stormy sea, slow crane rise to god's-eye view, poetic cinematic, rich volumetric light.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: a1-oil-macro
+    source: "user-provided"
+    text: |
+      Extreme macro 120fps slow-motion shot. A single drop of dark iridescent oil falls into a calm dish of liquid glycerin. Upon contact, swirling marbled patterns of vivid magenta, cyan, and gold bloom outward in high fluid detail. Key lighting from a side softbox highlights the physical surface tension and micro-ripples. Shot on 100mm macro lens, deep depth of field, neutral dark background.
+    tags:
+      length: short
+      complexity: simple
+      style: photorealistic
+      quality: "4k"
+      camera: static
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: a2-fashion-volumetric
+    source: "user-provided"
+    text: |
+      Studio fashion editorial shot. A model wearing a structured metallic silver gown stands in a dark room filled with dense, low-hanging haze. A sharp, warm spotlight cuts through the haze from above right, creating visible volumetric light shafts. The model executes a slow 90-degree turn; the metallic fabric catches crisp specular highlights and casts dynamic shadows on the matte grey floor. 35mm prime lens, 24fps, high contrast.
+    tags:
+      length: medium
+      complexity: simple
+      style: photorealistic
+      quality: production-grade
+      camera: static
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: a3-arch-timelapse
+    source: "user-provided"
+    text: |
+      Fixed wide-angle shot of a brutalist concrete building with large geometric windows. Smooth time-lapse sequence transitioning from harsh midday daylight to twilight. Shadows cast by the concrete fins stretch across the facade before softening into dusk. Warm interior tungsten lights flicker on inside the windows as the sky behind turns deep indigo. Photorealistic, 8k, architectural camera tilt shift.
+    tags:
+      length: medium
+      complexity: simple
+      style: photorealistic
+      quality: "8k"
+      camera: static
+      physics: none
+      refs: none
+      cost: medium
+
+  - id: a4-hoverbike-pursuit
+    source: "user-provided"
+    text: |
+      Low-angle tracking shot following a matte-black hover-bike navigating through a dense, rain-soaked cyberpunk alley at night. Neon signs in Japanese kanji reflect off wet pavement and puddle surfaces. As the vehicle turns sharply, visible red laser taillights streak across the frame with anamorphic blue streak lens flares. Wet asphalt physics, water spray off anti-gravity pads, dynamic camera shaking.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: a5-wagyu-culinary
+    source: "user-provided"
+    text: |
+      Close-up culinary sequence. A butcher knife cuts smoothly through a perfectly seared medium-rare wagyu steak resting on a slate board. Coarse salt crystals and cracked black pepper are shaken over the cut surface in slow motion. Subtle wisps of steam rise from the warm pink center. Warm directional studio key lighting, f/2.8 aperture, shallow depth of field, 60fps.
+    tags:
+      length: short
+      complexity: simple
+      style: photorealistic
+      quality: "4k"
+      camera: static
+      physics: basic
+      refs: none
+      cost: medium
+
+  - id: a6-martial-arts-kick
+    source: "user-provided"
+    text: |
+      Dynamic side-profile tracking shot following a martial artist performing a mid-air spin kick in an abandoned industrial warehouse. Dust clouds kick up from the floor upon takeoff. The camera moves horizontally at the same speed as the athlete. Shafts of afternoon sunlight slice through high dusty windows, highlighting muscle tension and airborne dust particles. Photorealistic motion blur, 24fps film stock look.
+    tags:
+      length: short
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: a7-jazz-trumpeter
+    source: "user-provided"
+    text: |
+      Shot on 16mm film with visible grain and subtle gate weave. Medium shot of a jazz trumpeter in a dim 1950s New York club. Thick cigarette smoke drifts past the warm brass instrument as a solitary spotlight shines from above. The trumpeter presses the valves with subtle fingers while leaning back. Warm vintage color palette, rich blacks, soft halation around highlight edges.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: static
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: a8-sea-turtle
+    source: "user-provided"
+    text: |
+      Underwater tracking shot moving alongside a sea turtle swimming through a vibrant coral reef. Sunbeams slice through the clear turquoise water, projecting dynamic caustic light patterns onto the turtle's shell and the sandy ocean floor below. Tiny ambient bubbles drift upward from the coral. Natural water physics, gentle camera float, 4k 60fps.
+    tags:
+      length: medium
+      complexity: simple
+      style: photorealistic
+      quality: "4k"
+      camera: tracking
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: a9-snow-to-desert
+    source: "user-provided"
+    text: |
+      Seamless continuous wide shot starting in a quiet, snowy pine forest. The camera slowly pushes forward through two large pine trees; as it crosses the threshold between them, the snow seamlessly morphs into glowing white sand, and the background shifts into a sunbleached desert at midday. Natural camera motion, high detail texture blend on ground surfaces, realistic lighting transition.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: cinematic
+      quality: "4k"
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: a10-hologram-engineer
+    source: "user-provided"
+    text: |
+      Medium shot of an engineer interacting with a three-dimensional translucent holographic engine schematic floating in mid-air. The engineer's fingers swipe and rotate individual glowing blue components. Dynamic blue light reflects across the engineer's face, safety glasses, and suit. Clean dark laboratory background, high-tech interface optics, crisp vector render aesthetic.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: static
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: a11-fpv-alpine
+    source: "user-provided"
+    text: |
+      FPV drone camera flying low over a winding alpine ridge at sunrise. The camera skims inches above jagged granite rocks and patches of crisp snow before diving down a steep pine-covered slope into a foggy valley below. High kinetic speed, wide-angle lens distortion, lens flare as the camera points toward the rising sun, stable horizon control.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: "4k"
+      camera: fpv
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: a12-snowy-owl
+    source: "user-provided"
+    text: |
+      Telephoto 500mm shot of a snowy owl perched on a weathered fence post during a heavy blizzard. The camera remains still while snow particles drift across the frame in soft focus. The owl turns its head 180 degrees slowly, yellow eyes fixing directly on the camera lens. Subtle chest breathing motion, snow melting on feathers, extreme depth of field blur.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: "8k"
+      camera: static
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: a13-car-turntable
+    source: "user-provided"
+    text: |
+      Studio car commercial shot. A sleek red electric sports car sits on a glossy black turntable inside a dark soundstage. A long linear overhead softbox light sweeps from front to back over the chassis, tracing the dynamic body lines and highlighting specular reflections on the metallic paint and glass. 1/50s shutter speed, smooth camera dolly-in toward the front grille.
+    tags:
+      length: short
+      complexity: simple
+      style: photorealistic
+      quality: "4k"
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: a14-hospital-corridor
+    source: "user-provided"
+    text: |
+      Slow, deliberate camera push-in down a long, dimly lit hospital corridor at night. Flickering overhead fluorescent lights cast pulsing shadows against peeling wallpaper. At the end of the hallway, a heavy metal door sways slightly on its hinges. Cold color palette, muted green tones, subtle camera drift, tension-building pacing.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: a15-blackhole
+    source: "user-provided"
+    text: |
+      Cinematic space shot orbiting a massive supermassive black hole. A glowing, turbulent accretion disk of superheated plasma in orange and bright violet swirls around the event horizon. Gravitational lensing visibly warps the background star field around the central black void. Photorealistic rendering, slow majestic orbital camera move, deep space ambient lighting.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: orbital
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: a16-hanoi-wok
+    source: "user-provided"
+    text: |
+      Handheld 35mm street documentary style shot. A street vendor in Hanoi cooks on an open wok over a flame at dusk. Sparks and steam rise as he tosses ingredients. Pedestrians and scooters stream past in soft background focus. Warm amber light from street lamps mixes with cool twilight sky. Natural camera shake, realistic shutter speed, authentic color reproduction.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: photorealistic
+      quality: "4k"
+      camera: tracking
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: a17-book-runes
+    source: "user-provided"
+    text: |
+      Close-up shot of an ancient leather-bound book lying open on an oak desk. Golden, glowing runes slowly burn into the parchment pages, emanating small, floating ember particles that ascend into the air. The camera tilts up slowly from the book to follow the embers drifting into the dark room. High particle count, soft optical glow, rich texture detail.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: a18-water-balloon
+    source: "user-provided"
+    text: |
+      Phantom Flex 1000fps ultra-high-speed shot. A single clear water balloon impacts a solid brick wall in slow motion. The rubber stretches, ripples, and bursts, releasing a suspended sphere of water that maintains its shape for a fraction of a second before atomizing into droplets. Sharp focus on fluid motion, hard directional key light, solid dark background.
+    tags:
+      length: short
+      complexity: simple
+      style: photorealistic
+      quality: "4k"
+      camera: static
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: a19-sailor-closeup
+    source: "user-provided"
+    text: |
+      Tight close-up shot focusing on the eyes of an elderly sailor staring out toward a stormy sea. Strong wind blows fine salt spray across his face, wet beard, and weathered skin. His expression shifts from stoic endurance to subtle resolve. Natural daylight, raw exposure, visible skin detail, micro-eye movements, cinematic color grading.
+    tags:
+      length: short
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: a20-library-letter
+    source: "user-provided"
+    text: |
+      Continuous 10-second shot with explicit temporal progression: [0:00-0:03] Wide shot of a quiet glass-walled library at night with rain tapping against the window. [0:03-0:06] The camera performs a smooth crane down to a wooden desk where an open letter sits under a warm desk lamp. [0:06-0:10] A hand enters the frame, picks up the letter, and a gust of wind opens an adjacent window, sending loose papers fluttering across the room. Smooth camera motion, realistic paper flight physics, realistic lighting shift.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: cinematic
+      quality: "4k"
+      camera: dolly
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: g1-multi-ref-product
+    source: "user-provided"
+    text: |
+      Overhead shot of (@Image1) placed on a marble counter. Cut to a medium shot of hands unboxing (@Image2). Close-up of (@Image3) in use, with soft morning light. Ambient kitchen sounds, ceramic clinks, warm neutral tones.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: photorealistic
+      quality: production-grade
+      camera: dolly
+      physics: basic
+      refs: multi
+      cost: expensive
+
+  - id: g2-audio-dance
+    source: "user-provided"
+    text: |
+      A dancer moves through an empty warehouse, choreography precisely matching the rhythm of (@Audio1). Wide shot transitions into close-ups of hands and feet. Dust floats in slanted afternoon light. Every cut follows the beat of the audio, creating a rhythmic visual flow.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: "4k"
+      camera: dolly
+      physics: particle
+      refs: audio
+      cost: expensive
+
+  - id: g3-japanese-romance
+    source: "user-provided"
+    text: |
+      15-second cinematic Japanese drama pure love ambiguous short film, ultra-realistic quality, warm golden sunlight in an empty classroom in the afternoon, spilling through the blinds onto the side-by-side desks. A girl with long black hair writes in a notebook, pen scratching softly. Cut to a boy secretly watching her from across the aisle, subtle micro-expressions. Cicadas chirping in the background, low-frequency heartbeat sound. Camera slowly pushes in on the girl's face as she notices him. Dialogue: "What are you looking at?" spoken softly.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: g4-before-after-desk
+    source: "user-provided"
+    text: |
+      2-shot transformation sequence. Shot 1 (0-4s): Medium shot of a cluttered, messy desk with papers and empty coffee cups. Shot 2 (5-8s): Whip pan to reveal the same desk now perfectly organized with a sleek laptop and a single plant. Bright, clean lighting, upbeat electronic music.
+    tags:
+      length: short
+      complexity: multi_stage
+      style: photorealistic
+      quality: "4k"
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: medium
+
+  - id: g5-character-consistency
+    source: "user-provided"
+    text: |
+      3-shot montage. Shot 1 (0-4s): Close-up of a pale young woman with long black wavy hair and bangs, wearing a black low-cut top, looking down. Shot 2 (5-9s): She looks up and smiles warmly at the camera, natural handheld sway. Shot 3 (10-14s): She turns and walks away, her hair and skirt swaying, bright natural sunlight, photoreal.
+    tags:
+      length: long
+      complexity: simple
+      style: photorealistic
+      quality: "4k"
+      camera: tracking
+      physics: basic
+      refs: image
+      cost: expensive
+
+  - id: g6-burger-joint
+    source: "user-provided"
+    text: |
+      Montage, multi-shot action Hollywood movie, cinematic lighting, photorealistic, 35mm film quality, ARRI ALEXA aesthetic. A pink-haired girl with glasses sits on the hood of a white pickup truck under a concrete overpass at dusk, eating a burger. A pale zombie with wet dark hair sprints toward her. She calmly sets down the burger, erupts into a massive pale tusked creature, devours the zombie whole, then shrinks back to human form. Handheld shake throughout.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: g7-chanel-luxury
+    source: "user-provided"
+    text: |
+      6-shot cinematic fashion film. Shot 1 (0-2s): Extreme close-up of a hand adjusting a pearl necklace, rack focus from the pearls to the reflection. Shot 2 (3-5s): Slow-motion medium shot of a model in a silk dress walking through a marble hallway, hair flowing. Shot 3 (6-7s): Close-up of a perfume bottle being sprayed, mist catching the light. Shot 4 (8-10s): Cut to the model's face, soft smile, golden rim lighting. Shot 5 (11-13s): Slow dolly-out revealing the full gown. Shot 6 (14-15s): Black screen with the brand logo fading in. Ambient string quartet, soft whisper of fabric, no dialogue.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: g8-viral-hook
+    source: "user-provided"
+    text: |
+      10-second scroll-stopping opener. Shot 1 (0-1s): Static shot of a person sitting perfectly still at a desk. Shot 2 (2-4s): They suddenly slam their hands on the desk and stand up, rapid zoom-in. Shot 3 (5-7s): Handheld tracking shot of them walking quickly toward the camera. Shot 4 (8-10s): They point at the lens and say "You're wasting your time." Dramatic orchestral hit on the slam, fast-paced electronic music kicks in.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: cinematic
+      quality: "4k"
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: medium
+
+  - id: g9-spacex-explainer
+    source: "user-provided"
+    text: |
+      12-second explanatory video. Shot 1 (0-3s): Wide shot of a SpaceX engine, technical blue lighting. Shot 2 (4-7s): Slow dolly-in to a close-up of the oxygen circulation system, animated arrows showing flow. Shot 3 (8-12s): Cut to @elonmusk in a black polo, standing in front of the engine, explaining the circulation, gesturing toward the component. Professional studio lighting, crisp focus, dramatic ambient score.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: basic
+      refs: image
+      cost: expensive
+
+  - id: g10-fantasy-knight
+    source: "user-provided"
+    text: |
+      15-second fantasy short film. Shot 1 (0-3s): Aerial drone shot sweeping over a misty medieval castle at sunrise. Shot 2 (4-7s): Medium shot of a knight in silver armor drawing a sword, sparks flying, slow-motion. Shot 3 (8-11s): Wide shot of a dragon circling overhead, fire erupting in the distance. Shot 4 (12-15s): Close-up of the knight's determined eyes through the helmet visor, dramatic orchestral score, epic sound design of roaring and clashing metal.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: cinematic
+      quality: "4k"
+      camera: orbital
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: g11-couture-fantasy
+    source: "user-provided"
+    text: |
+      6-shot cinematic fantasy fashion film. Shot 1 (0-3s): Extreme wide shot of a crystalline castle floating above a bioluminescent forest, mist swirling at its base, drone flyover. Shot 2 (4-6s): Slow dolly-in on a model in a flowing silver gown walking through a hall of mirrored pillars, each reflection showing a different version of her. Shot 3 (7-9s): Close-up of her hand brushing against a pillar, ripples spreading across the mirror surface. Shot 4 (10-12s): Medium shot of her turning to face the camera, gown catching ethereal blue light, hair floating as if underwater. Shot 5 (13-14s): Extreme close-up of her eyes—pupils dilating, revealing a galaxy within. Shot 6 (15s): Black screen with subtle shimmer logo reveal. Ambient orchestral swell, crystalline chimes, soft fabric rustle. Photorealistic, ARRI ALEXA 65 aesthetic, 35mm film grain, cinematic color grading with teal-and-orange palette.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: g12-underwater-studio
+    source: "user-provided"
+    text: |
+      4-shot surreal music video. Shot 1 (0-3s): Wide shot of a fully functional recording studio submerged in crystal-clear ocean water—Neve console, studio monitors, microphone on a stand—all operating underwater, bubbles rising from instruments. Shot 2 (4-6s): Medium shot of a musician in a vintage suit playing a submerged Fender Stratocaster, water rippling around the strings, sound waves visualized as concentric rings. Shot 3 (7-9s): Close-up of the mixing console, VU meters glowing, water droplets beading on the glass. Shot 4 (10-12s): Slow push-in on the musician's face, eyes closed in concentration, a single air bubble escaping from his lips. Muffled, reverb-drenched audio with underwater ambiance, distant whale song. Cinematic, anamorphic lens, deep teal color palette, shallow depth of field.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: g13-cyberpunk-chase
+    source: "user-provided"
+    text: |
+      5-shot cyberpunk action sequence. Shot 1 (0-2s): High-angle drone shot of a neon-soaked megacity at night, rain sheeting down, a figure in a glowing trench coat sprinting across rooftops. Shot 2 (3-5s): Dynamic tracking shot alongside the runner, camera matching their speed, neon reflections streaking across wet surfaces, handheld shake. Shot 3 (6-8s): Low-angle shot of pursuer—a chrome-plated android—leaping between buildings, hydraulic pistons firing, sparks trailing. Shot 4 (9-12s): Over-the-shoulder shot of the runner sliding under a collapsing billboard, debris exploding behind them. Shot 5 (13-15s): Close-up of the runner's eyes, pupil reflection showing the android closing in, slow-motion, rain hitting their face. Industrial synthwave score, heavy bass, rain and metal clanging. Blade Runner aesthetic, anamorphic flares, cool blue and magenta neon grading.
+    tags:
+      length: long
+      complexity: multi_subject
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: g14-vhs-horror
+    source: "user-provided"
+    text: |
+      5-shot retro horror teaser. Shot 1 (0-2s): Grainy VHS static, tracking lines, then a flickering image of a suburban house at night. Shot 2 (3-4s): Slow zoom into a window, a silhouette moving behind the curtain. Shot 3 (5-6s): Close-up of a child's hand reaching for a door handle, VHS color bleed, artifact noise. Shot 4 (7-8s): Quick flash frame of a distorted face—too many teeth, too-wide smile—lasting only 2 frames. Shot 5 (9-10s): Black screen with a single line of retro horror text: "He's already inside." 1980s film stock emulation, color bleeding, tracking artifacts, CRT scan lines, synth score with heavy reverb.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: g15-timelapse-stars
+    source: "user-provided"
+    text: |
+      2-shot epic timelapse transition. Shot 1 (0-10s): Hyperlapse of a city skyline at dusk transitioning to night—lights flickering on, stars appearing in the darkening sky, clouds racing overhead. Shot 2 (11-20s): Slow pull-back revealing the city is a tiny model on a desk, and we're in a child's bedroom, the child looking at the model with wonder. Ambient city hum transitioning to quiet bedroom sounds, soft piano. Cinematic, warm tones shifting to cool blue night, photorealistic.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: g16-sports-car-spec
+    source: "user-provided"
+    text: |
+      4-shot luxury car advertisement. Shot 1 (0-2s): Extreme close-up of a car badge—carbon fiber weave visible, precision machining, slow pan across the emblem. Shot 2 (3-5s): Low-angle tracking shot of the car driving through a desert highway at sunset, dust kicking up, golden hour flare. Shot 3 (6-8s): Interior shot—hands gripping a leather-wrapped steering wheel, gauges sweeping, engine roar building. Shot 4 (9-10s): Wide shot of the car parked on a salt flat, stars emerging above, silhouette against the twilight sky. Deep bass engine note, wind, subtle orchestral swell. Cinematic, anamorphic lens, teal and orange grading.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: g17-office-dramedy
+    source: "user-provided"
+    text: |
+      10-second workplace comedy. 0-2s: Static shot of a woman sitting perfectly still at a desk, blank expression. 3-5s: She suddenly slams her hands on the desk and stands up, rapid zoom-in, coffee cup rattling. 6-8s: Handheld tracking shot of her speed-walking through the office toward the camera, coworkers dodging out of her way. 9-10s: She points directly at the lens and says, "You're wasting my time." Dramatic orchestral hit on the slam, fast-paced electronic music kicks in. Professional office lighting, crisp focus.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: cinematic
+      quality: "4k"
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: medium
+
+  - id: g18-burger-food
+    source: "user-provided"
+    text: |
+      8-second food commercial. 0-2s: Overhead shot of a burger being assembled—bun, lettuce, patty, cheese melting, tomato, sauce drizzle. 3-4s: Close-up of the burger being cut in half, juices flowing, slow-motion. 5-6s: Hand reaches into frame, picks up the burger, takes a bite, crunch sound. 7-8s: Extreme close-up of the bite—cheese stretching, sauce dripping, satisfied sigh. Warm studio lighting, shallow depth of field, crispy sounds, upbeat jazz. 9:16 vertical, social media format.
+    tags:
+      length: short
+      complexity: simple
+      style: photorealistic
+      quality: "4k"
+      camera: static
+      physics: basic
+      refs: none
+      cost: medium
+
+  - id: g19-deer-nature
+    source: "user-provided"
+    text: |
+      12-second nature documentary. 0-4s: Aerial drone shot over a misty forest canopy at sunrise, golden light piercing through fog, birds taking flight. 5-8s: Slow dolly-in to a clearing where a deer drinks from a crystal-clear stream, reflections perfect, water rippling. 9-12s: Close-up of the deer's ear twitching, a fly landing, then the deer looks directly at camera, holds for 2 seconds. Ambient forest sounds—birdsong, water flowing, wind through leaves. Cinematic, warm golden and deep green palette, photorealistic.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: cinematic
+      quality: "4k"
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: medium
+
+  - id: g20-zero-gravity
+    source: "user-provided"
+    text: |
+      10-second sci-fi zero-gravity sequence. 0-3s: Wide shot of a space station interior, an astronaut floating in the center, suspended in mid-air. 4-6s: Slow 360-degree orbit around the astronaut, lights reflecting off the visor, stars visible through the window. 7-8s: Close-up of the astronaut's hand reaching for a floating water droplet, which ripples and splits. 9-10s: The astronaut pushes off a wall, floating toward the camera, reaching out. Ambient hum of the station, breathing sounds, soft synth score. Cool blue and white lighting, anamorphic lens.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: "4k"
+      camera: orbital
+      physics: fluid
+      refs: none
+      cost: medium
+
+  - id: s1-haute-couture-fantasy
+    source: "user-provided"
+    text: |
+      6-shot cinematic fantasy fashion film. Shot 1 (0-3s): Extreme wide shot of a crystalline castle floating above a bioluminescent forest, mist swirling at its base, drone flyover. Shot 2 (4-6s): Slow dolly-in on a model in a flowing silver gown walking through a hall of mirrored pillars, each reflection showing a different version of her. Shot 3 (7-9s): Close-up of her hand brushing against a pillar, ripples spreading across the mirror surface. Shot 4 (10-12s): Medium shot of her turning to face the camera, gown catching ethereal blue light, hair floating as if underwater. Shot 5 (13-14s): Extreme close-up of her eyes—pupils dilating, revealing a galaxy within. Shot 6 (15s): Black screen with subtle shimmer logo reveal.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: s2-underwater-studio
+    source: "user-provided"
+    text: |
+      4-shot surreal music video. Shot 1 (0-3s): Wide shot of a fully functional recording studio submerged in crystal-clear ocean water—Neve console, studio monitors, microphone on a stand—all operating underwater, bubbles rising from instruments. Shot 2 (4-6s): Medium shot of a musician in a vintage suit playing a submerged Fender Stratocaster, water rippling around the strings, sound waves visualized as concentric rings. Shot 3 (7-9s): Close-up of the mixing console, VU meters glowing, water droplets beading on the glass. Shot 4 (10-12s): Slow push-in on the musician's face, eyes closed in concentration, a single air bubble escaping from his lips. Muffled, reverb-drenched audio with underwater ambiance, distant whale song.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: s3-cyberpunk-chase
+    source: "user-provided"
+    text: |
+      5-shot cyberpunk action sequence. Shot 1 (0-2s): High-angle drone shot of a neon-soaked megacity at night, rain sheeting down, a figure in a glowing trench coat sprinting across rooftops. Shot 2 (3-5s): Dynamic tracking shot alongside the runner, camera matching their speed, neon reflections streaking across wet surfaces, handheld shake. Shot 3 (6-8s): Low-angle shot of pursuer—a chrome-plated android—leaping between buildings, hydraulic pistons firing, sparks trailing. Shot 4 (9-12s): Over-the-shoulder shot of the runner sliding under a collapsing billboard, debris exploding behind them. Shot 5 (13-15s): Close-up of the runner's eyes, pupil reflection showing the android closing in, slow-motion, rain hitting their face.
+    tags:
+      length: long
+      complexity: multi_subject
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: s4-burger-joint
+    source: "user-provided"
+    text: |
+      6-shot dark comedy transformation sequence. Shot 1 (0-2s): Medium shot of a pink-haired girl with glasses eating a burger on the hood of a white pickup truck under a concrete overpass at dusk, golden hour light, chewing lazily. Shot 2 (3-5s): Wide shot of a pale zombie with wet dark hair bursting from shadows, sprinting toward her, handheld shake. Shot 3 (6-7s): Close-up of the girl's face—mild annoyance, eyes rolling, she sets the burger down with deliberate care. Shot 4 (8-10s): Medium shot as she transforms—erupting into a massive pale tusked creature, clothes tearing, rapid violent motion. Shot 5 (11-13s): Wide low-angle shot of the creature catching the zombie mid-sprint, devouring it in one bite, visceral sound design. Shot 6 (14-15s): Close-up of the girl back in human form, picking up the burger, taking a bite, smirking. Handheld shake throughout, dramatic orchestral hit on transformation, wet crunching sounds, ambient dusk traffic.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: s5-chanel-luxury
+    source: "user-provided"
+    text: |
+      6-shot cinematic fashion film. Shot 1 (0-2s): Extreme close-up of a hand adjusting a pearl necklace, rack focus from pearls to reflection in a gilded mirror. Shot 2 (3-5s): Slow-motion medium shot of a model in a silk dress walking through a marble hallway, hair flowing, fabric catching light. Shot 3 (6-7s): Close-up of a perfume bottle being sprayed, mist catching golden rim light, slow-motion. Shot 4 (8-10s): Cut to model's face—soft smile, golden rim lighting, subtle eyelash flutter. Shot 5 (11-13s): Slow dolly-out revealing the full gown, train flowing behind her, marble columns framing the shot. Shot 6 (14-15s): Black screen with embossed brand logo fade-in. Ambient string quartet, soft whisper of fabric, no dialogue. High-end editorial aesthetic, soft pastel and gold palette, shallow depth of field.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: s6-spacex-tech
+    source: "user-provided"
+    text: |
+      12-second educational/technical video. Shot 1 (0-3s): Wide shot of a SpaceX Raptor engine in a testing facility, technical blue and orange lighting, engineers in the background. Shot 2 (4-7s): Slow dolly-in to a close-up of the oxygen circulation system, animated arrows overlaying showing flow path, text labels appearing. Shot 3 (8-12s): Cut to reference subject @elonmusk in a black polo, standing in front of the engine, gesturing toward the component, explaining the circulation system. Dialogue: "The oxygen flows through these channels at 200 atmospheres of pressure." Professional studio lighting, crisp focus on subject, dramatic ambient score. 16:9, 4K resolution.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: basic
+      refs: image
+      cost: expensive
+
+  - id: s7-fantasy-castle-aerial
+    source: "user-provided"
+    text: |
+      4-shot epic fantasy sequence. Shot 1 (0-3s): Aerial drone shot sweeping over a misty medieval castle at sunrise, golden light breaking through fog, birds scattering. Shot 2 (4-7s): Medium shot of a knight in silver armor drawing a longsword from a scabbard, sparks flying, slow-motion, armor gleaming. Shot 3 (8-11s): Wide shot of a dragon circling overhead, fire erupting in the distance, massive scale, epic environment. Shot 4 (12-15s): Extreme close-up of the knight's determined eyes through the helmet visor, reflection of dragon fire in the pupils. Dramatic orchestral score, roaring and clashing metal, epic sound design. Massive environment, photorealistic, 35mm anamorphic.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: orbital
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: s8-vhs-horror
+    source: "user-provided"
+    text: |
+      5-shot retro horror teaser. Shot 1 (0-2s): Grainy VHS static, tracking lines, then a flickering image of a suburban house at night. Shot 2 (3-4s): Slow zoom into a window, a silhouette moving behind the curtain. Shot 3 (5-6s): Close-up of a child's hand reaching for a door handle, VHS color bleed, artifact noise. Shot 4 (7-8s): Quick flash frame of a distorted face—too many teeth, too-wide smile—lasting only 2 frames. Shot 5 (9-10s): Black screen with a single line of retro horror text: "He's already inside." 1980s film stock emulation, color bleeding, tracking artifacts, CRT scan lines, synth score with heavy reverb.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: s9-city-timelapse
+    source: "user-provided"
+    text: |
+      2-shot epic timelapse transition. Shot 1 (0-10s): Hyperlapse of a city skyline at dusk transitioning to night—lights flickering on, stars appearing in the darkening sky, clouds racing overhead. Shot 2 (11-20s): Slow pull-back revealing the city is a tiny model on a desk, and we're in a child's bedroom, the child looking at the model with wonder. Ambient city hum transitioning to quiet bedroom sounds, soft piano. Cinematic, warm tones shifting to cool blue night, photorealistic.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: s10-sports-car-spec
+    source: "user-provided"
+    text: |
+      4-shot luxury car advertisement. Shot 1 (0-2s): Extreme close-up of a car badge—carbon fiber weave visible, precision machining, slow pan across the emblem. Shot 2 (3-5s): Low-angle tracking shot of the car driving through a desert highway at sunset, dust kicking up, golden hour flare. Shot 3 (6-8s): Interior shot—hands gripping a leather-wrapped steering wheel, gauges sweeping, engine roar building. Shot 4 (9-10s): Wide shot of the car parked on a salt flat, stars emerging above, silhouette against the twilight sky. Deep bass engine note, wind, subtle orchestral swell. Cinematic, anamorphic lens, teal and orange grading.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: s11-floating-castle-haute
+    source: "user-provided"
+    text: |
+      6-shot cinematic fantasy fashion film. Shot 1 (0-3s): Extreme wide shot of a crystalline castle floating above a bioluminescent forest, mist swirling at its base, drone flyover. Shot 2 (4-6s): Slow dolly-in on a model in a flowing silver gown walking through a hall of mirrored pillars, each reflection showing a different version of her. Shot 3 (7-9s): Close-up of her hand brushing against a pillar, ripples spreading across the mirror surface. Shot 4 (10-12s): Medium shot of her turning to face the camera, gown catching ethereal blue light, hair floating as if underwater. Shot 5 (13-14s): Extreme close-up of her eyes—pupils dilating, revealing a galaxy within. Shot 6 (15s): Black screen with subtle shimmer logo reveal. Ambient orchestral swell, crystalline chimes, soft fabric rustle. Photorealistic, ARRI ALEXA 65 aesthetic, 35mm film grain, cinematic color grading with teal-and-orange palette.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: s12-japanese-classroom
+    source: "user-provided"
+    text: |
+      15-second cinematic Japanese drama pure love ambiguous short film. Shot 1 (0-4s): A girl with long black hair writes in a notebook, pen scratching softly, dust motes dancing in light. Shot 2 (5-8s): Cut to a boy secretly watching her from across the aisle, subtle micro-expressions—longing, nervousness, a slight swallow. Shot 3 (9-12s): Camera slowly pushes in on the girl's face as she notices him, a faint blush, she stops writing. Shot 4 (13-15s): She turns to him, shy smile. Dialogue: "What are you looking at?" spoken softly, breathy. Cicadas chirping in the background, low-frequency heartbeat sound, soft piano. Character consistency (no deformation/drift), synchronized breathing and lip movements. Photorealistic, 35mm film quality.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: s13-skyscraper-timelapse
+    source: "user-provided"
+    text: |
+      10-second sequence. Shot 1 (0-4s): Time-lapse of a skyscraper growing like a living tree: steel beams sprout leaves, glass windows bloom like flowers, roots crack the sidewalk, golden hour to night cycle, smooth morphing motion. Shot 2 (5-10s): Slow dolly-in on the rooftop as the building sways, branches swaying, the city skyline visible behind. Cinematic color grading, warm to cool transition, photorealistic.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: cinematic
+      quality: "4k"
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: s14-floating-lily-pad
+    source: "user-provided"
+    text: |
+      11-second cinematic shot. A jazz saxophonist plays on a floating lily pad in the middle of a bioluminescent lake at night; every note sends ripples of blue-green light across the water and into the starry sky. Slow orbiting drone shot, drifting amber-rose horizon, dreamy atmosphere. Rich color, no dialogue, ambient piano and soft synth. 35mm film grain, anamorphic lens.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: orbital
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: s15-origami-crane
+    source: "user-provided"
+    text: |
+      8-second cinematic shot. A giant origami crane unfolds itself in mid-air above a quiet Japanese courtyard at dusk, paper edges glowing softly as it takes flight, petals falling in slow motion. Camera slowly drifts upward, ethereal lighting mixing with warm dusk. 4K, photorealistic, gentle ambient music.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: "4k"
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: s16-typer-constellations
+    source: "user-provided"
+    text: |
+      9-second cinematic shot. A vintage typewriter on a rainy windowsill types by itself; each keystroke releases a tiny glowing word that floats up and forms constellations in the dark room. Soft desk lamp, shallow DOF, magical realism, subtle film grain. 4K, photorealistic, ambient piano score.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: static
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: s17-lighthouse-fresnel
+    source: "user-provided"
+    text: |
+      15-second cinematic shot. A lighthouse keeper winds the massive Fresnel lens at twilight; as it spins, each beam catches fragments of different seasons—snow, cherry blossoms, autumn leaves, summer lightning—projecting them across the stormy sea. Slow crane rise to god's-eye view, poetic cinematic, rich volumetric light, painterly color grading.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: s18-mars-sunflower
+    source: "user-provided"
+    text: |
+      13-second cinematic shot. A lone astronaut plants a glowing sunflower on the surface of Mars; the flower rapidly grows into a towering bioluminescent forest that lights up the red dunes. Dust storms in the distance, slow heroic push-in, epic sci-fi, high dynamic range, particle-heavy. Cinematic, anamorphic lens, warm/cool contrast.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: s19-noir-cyberpunk-split
+    source: "user-provided"
+    text: |
+      9-second cinematic shot. Split-reality street scene: left half is rainy 1940s noir black-and-white, right half is hyper-saturated cyberpunk neon; a single character walks the dividing line and glitches between eras with every step. Tracking side shot, anamorphic, high contrast, seamless vertical split. Cinematic, 35mm film grain.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: s20-vinyl-groove
+    source: "user-provided"
+    text: |
+      8-second cinematic shot. Macro journey inside a vinyl record groove: the camera races along the spiral as music visually appears—bass notes as deep canyons, high hats as sparkling crystal spikes, warm analog glow. Dynamic speed ramps, 4K 60fps, abstract music-visual hybrid. Cinematic, anamorphic lens.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: cinematic
+      quality: "4k"
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-ms-01-thief-getaway
+    source: "generated"
+    text: |
+      10-second cinematic heist sequence. Shot 1 (0-3s): Close-up of a leather-gloved hand picking a complex mechanical lock under a single green emergency light, beads of sweat on the metal. Shot 2 (3-6s): Camera pulls back to reveal the crouched figure in a dark corridor, breathing slow, knife at the belt. Shot 3 (6-10s): A security camera's red LED blinks on, the figure freezes, then dives sideways through a window as the alarm triggers. Cinematic anamorphic, 24fps, photorealistic, tension-building.
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-ms-02-cookbook
+    source: "generated"
+    text: |
+      12-second culinary narrative. Shot 1 (0-3s): Wide shot of a chef's hands tying an apron at a stainless steel kitchen counter, morning light through a window. Shot 2 (3-7s): Close-up of a knife slicing a ripe tomato, juice beading on the blade, slow-motion. Shot 3 (7-10s): The pan sizzles as ingredients hit oil, flames leap up dramatically. Shot 4 (10-12s): Plated dish, camera pulls back slowly. Cinematic 4K, shallow DOF, warm amber light, appetizing color grade.
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: cinematic
+      quality: "4k"
+      camera: dolly
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: gen-ms-03-architectural-reveal
+    source: "generated"
+    text: |
+      8-second architectural reveal. Shot 1 (0-2s): Static wide shot of a dark concrete hallway at twilight, single overhead light. Shot 2 (2-4s): Sunlight breaks through ceiling slats casting geometric shadows on the floor as the camera pushes forward. Shot 3 (4-6s): Camera crosses into a double-height living room with an infinity pool view. Shot 4 (6-8s): Slow tilt up to the sunset sky, dust motes in warm light. Architectural Digest aesthetic, 60fps, photorealistic.
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-ms-04-orchard-magic
+    source: "generated"
+    text: |
+      10-second dream sequence. Shot 1 (0-3s): Wide shot of an apple orchard at dawn, mist rising from the grass, golden hour backlighting. Shot 2 (3-6s): A child in a red coat runs through the trees, leaves swirling. Shot 3 (6-10s): Slow-motion close-up of the child holding a glowing apple, magical particles rising from it, soft orchestral swell. Cinematic, anamorphic, 4K, photorealistic, dreamy atmosphere.
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: cinematic
+      quality: "4k"
+      camera: dolly
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: gen-ms-05-gas-station
+    source: "generated"
+    text: |
+      10-second noir thriller. Shot 1 (0-3s): Wide shot of a lonely gas station at night, fluorescent lights buzzing, rain on the pavement. Shot 2 (3-6s): A figure in a leather jacket walks to the payphone, posture tense. Shot 3 (6-10s): Camera pushes in to the figure's face as they stare at the camera, the fluorescent light flickers, red taillights of a car pull away in the reflection. Film noir, 4K, anamorphic, photorealistic, high contrast.
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: cinematic
+      quality: "4k"
+      camera: dolly
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: gen-ms-06-surf-sunset
+    source: "generated"
+    text: |
+      12-second sports sequence. Shot 1 (0-3s): Wide shot of a surfer paddling out at sunset, orange sky reflected in the water. Shot 2 (3-6s): The surfer catches a wave, drops in, the camera tilts up to follow. Shot 3 (6-10s): Inside the barrel, looking out at the glowing horizon through the curl. Shot 4 (10-12s): Pull-back to reveal the surfer emerging from the wave victorious, arms spread. Cinematic 4K, photorealistic, slow-motion moments, water physics.
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: cinematic
+      quality: "4k"
+      camera: tracking
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: gen-ms-07-time-traveler
+    source: "generated"
+    text: |
+      15-second sci-fi narrative. Shot 1 (0-3s): Wide shot of a futuristic subway station, glass elevators, holographic advertisements. Shot 2 (3-6s): A figure steps into a phone booth, the doors close. Shot 3 (6-9s): The booth glows and dissolves in a flash of light, leaving only swirling dust. Shot 4 (9-12s): The figure stands in a 1920s ballroom, surprised, time-travelling pose. Shot 5 (12-15s): Close-up of the figure's eyes, a glitch effect ripples across the frame. Cinematic, anamorphic, 4K, photorealistic, particle-heavy.
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: gen-ms-08-vintage-garage
+    source: "generated"
+    text: |
+      10-second automotive narrative. Shot 1 (0-3s): Close-up of a vintage wrench turning a bolt on a 1967 Mustang engine, sparks falling. Shot 2 (3-6s): Camera pulls back to reveal a man in overalls wiping his brow, satisfied. Shot 3 (6-10s): The garage door opens to reveal the restored car, golden hour light flooding in, the man smiles. Cinematic 4K, photorealistic, warm amber tones, heartfelt.
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: cinematic
+      quality: "4k"
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-ms-09-magic-trick
+    source: "generated"
+    text: |
+      12-second performance sequence. Shot 1 (0-3s): Close-up of a magician's hands on a velvet table, a coin resting between fingers. Shot 2 (3-6s): The coin is flicked up, slow-motion, catching the spotlight. Shot 3 (6-9s): The coin vanishes mid-air, no explanation, the magician raises an eyebrow. Shot 4 (9-12s): Wide shot reveals the audience gasping, the magician bows. Cinematic 4K, photorealistic, anamorphic, theatrical lighting.
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: cinematic
+      quality: "4k"
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-ms-10-festival-crowd
+    source: "generated"
+    text: |
+      10-second concert sequence. Shot 1 (0-3s): Wide shot of a music festival at dusk, lasers cutting through the haze, crowd cheering. Shot 2 (3-6s): Close-up of a singer's face bathed in stage light, sweat and passion. Shot 3 (6-10s): Drone rise revealing the massive crowd, hands in the air, fireworks over the stage. Cinematic 4K, anamorphic, photorealistic, concert lighting, particle effects.
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: cinematic
+      quality: "4k"
+      camera: orbital
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: gen-ms-11-mountain-rescue
+    source: "generated"
+    text: |
+      15-second dramatic sequence. Shot 1 (0-3s): Wide aerial shot of a snowy mountain ridge, a tiny figure climbing. Shot 2 (3-6s): Close-up of a frostbitten hand gripping an ice axe, knuckles white. Shot 3 (6-10s): A rescue helicopter appears through the mist, rotor wash blowing snow. Shot 4 (10-15s): The climber is lifted to safety, the helicopter soaring away from the peak. Cinematic 4K, anamorphic, photorealistic, blizzard effects, dramatic orchestral score.
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: gen-ms-12-quiet-bistro
+    source: "generated"
+    text: |
+      10-second slice-of-life. Shot 1 (0-3s): Wide shot of a Paris bistro at twilight, warm interior light spilling through windows. Shot 2 (3-6s): A couple sits across from each other, hands intertwined, soft jazz soundtrack. Shot 3 (6-10s): Camera pulls back slowly through the window, the street is quiet, an old car passes, the moment preserved. Cinematic, anamorphic, romantic, photorealistic, warm amber tones.
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: cinematic
+      quality: "4k"
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-ms-13-bioluminescent-cave
+    source: "generated"
+    text: |
+      12-second fantasy sequence. Shot 1 (0-3s): Wide shot of a dark cave interior, glowing crystals embedded in walls. Shot 2 (3-6s): A figure in a hooded cloak walks carefully across a stone bridge, the crystals pulsing with their steps. Shot 3 (6-9s): Close-up of a hand reaching toward a crystal, bioluminescent ripples spreading outward. Shot 4 (9-12s): Camera pulls back to reveal the full cavern shimmering, the figure now small at the bridge center. Cinematic 4K, photorealistic, anamorphic, particle effects, ethereal atmosphere.
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: cinematic
+      quality: "4k"
+      camera: dolly
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: gen-ms-14-grandmother-kitchen
+    source: "generated"
+    text: |
+      10-second documentary-style. Shot 1 (0-3s): Close-up of an elderly woman's hands kneading dough, flour dusting the air. Shot 2 (3-6s): Camera pulls back to reveal a worn kitchen, sunlight through lace curtains. Shot 3 (6-10s): Wide shot of a young grandchild watching from the doorway, smiling, the grandmother beckons. Cinematic, warm, photorealistic, 4K, natural light, soft piano soundtrack.
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: cinematic
+      quality: "4k"
+      camera: dolly
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: gen-ms-15-zombie-escape
+    source: "generated"
+    text: |
+      12-second horror sequence. Shot 1 (0-3s): POV running through a dark hospital corridor, fluorescent lights flickering. Shot 2 (3-6s): A door slams behind, the figure stumbles. Shot 3 (6-9s): Reveal of a zombie horde at the end of the corridor, the figure whispers "no". Shot 4 (9-12s): A helicopter spotlight cuts through the window, the figure climbs out as zombies swarm. Cinematic 4K, photorealistic, horror lighting, suspenseful sound design.
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: cinematic
+      quality: "4k"
+      camera: tracking
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: gen-ms-16-soccer-goal
+    source: "generated"
+    text: |
+      10-second sports highlight. Shot 1 (0-3s): Wide shot of a packed soccer stadium, the ball in mid-air during a free kick. Shot 2 (3-6s): The ball curves toward the goal, the keeper dives, slow-motion. Shot 3 (6-10s): Top corner, net ripples, the crowd erupts, the kicker slides on knees. Cinematic 4K, anamorphic, photorealistic, dynamic motion, particle effects.
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: cinematic
+      quality: "4k"
+      camera: tracking
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: gen-ms-17-spaceship-dock
+    source: "generated"
+    text: |
+      12-second sci-fi sequence. Shot 1 (0-3s): Wide shot of a massive spaceship docked at a space station, ships buzzing around it. Shot 2 (3-6s): Interior airlock opens, a lone astronaut steps out, lights flickering. Shot 3 (6-9s): Close-up of the astronaut's visor reflecting an alien planet below. Shot 4 (9-12s): The astronaut removes their helmet, breathes, the planet fills the frame. Cinematic 4K, photorealistic, anamorphic, sci-fi lighting, particle effects.
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: gen-ms-18-morning-coffee
+    source: "generated"
+    text: |
+      10-second slice-of-life. Shot 1 (0-3s): Close-up of espresso pouring into a white ceramic cup, crema forming. Shot 2 (3-6s): Camera pulls back to reveal a sunlit kitchen, steam rising. Shot 3 (6-10s): A hand picks up the cup, the camera follows as the figure walks to a window overlooking a city skyline at dawn. Cinematic 4K, photorealistic, warm lighting, soft jazz, shallow DOF.
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: cinematic
+      quality: "4k"
+      camera: dolly
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: gen-ms-19-magic-show
+    source: "generated"
+    text: |
+      12-second theatrical sequence. Shot 1 (0-3s): Wide shot of a grand theater, red curtains, a single spotlight. Shot 2 (3-6s): A magician appears in a puff of smoke, dressed in silver. Shot 3 (6-9s): Close-up of the hands manipulating cards in impossible patterns. Shot 4 (9-12s): The magician bows, the curtain falls, the audience erupts. Cinematic 4K, anamorphic, theatrical lighting, particle effects.
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: gen-ms-20-glacier-cruise
+    source: "generated"
+    text: |
+      12-second travel sequence. Shot 1 (0-3s): Wide shot of a massive cruise ship sailing past a glacier, ice calving in slow-motion. Shot 2 (3-6s): Close-up of a couple on deck, hot drinks in hand, breath misting in the cold air. Shot 3 (6-9s): Drone rises revealing the scale of the glacier, the ship tiny against the ice. Shot 4 (9-12s): Pull-back to the moon rising over the ice field, the ship glowing in the twilight. Cinematic 4K, photorealistic, anamorphic, cool color palette, ambient music.
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: cinematic
+      quality: "4k"
+      camera: orbital
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: gen-an-01-pixar-robot-puppy
+    source: "generated"
+    text: |
+      Pixar-style 3D animation, 10 seconds. A wide-eyed rusty robot stands atop a scrap pile, holding a broken gear. It climbs down into a hollow where a small mechanical puppy lies motionless. The robot hesitantly removes its own glowing blue battery and places it into the puppy's chest. Light pulses, the puppy's eyes flicker on, it wags its tail. Heartwarming orchestral swell, soft fur rendering, subsurface scattering, rim lighting.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: animation
+      quality: production-grade
+      camera: dolly
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: gen-an-02-anime-sword-clash
+    source: "generated"
+    text: |
+      High-budget anime production shot, 10 seconds. A samurai in white robes draws a glowing katana in a rain-soaked courtyard. As the blade arcs through the air, fluid fire trails in 2D hand-drawn style. Speed lines in the background, hand-drawn impact frames. The camera cuts to a slow-motion close-up of the blade's tip, sparks flying. Vibrant cel shading, dramatic rim lighting, 24fps animation on 12fps background panning.
+    tags:
+      length: medium
+      complexity: simple
+      style: animation
+      quality: production-grade
+      camera: static
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: gen-an-03-studio-ghibli-meadow
+    source: "generated"
+    text: |
+      Studio Ghibli style animation, 10 seconds. A girl in a red dress and her fox companion run up a grassy hill at sunset. Wildflowers bloom in their path, soft watercolor backgrounds. They reach the top and look out over a vast valley, the wind blowing through their hair. Gentle piano, warm orchestration, peaceful atmosphere.
+    tags:
+      length: medium
+      complexity: simple
+      style: animation
+      quality: production-grade
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-an-04-pixar-balloon
+    source: "generated"
+    text: |
+      Pixar-style 3D animation, 8 seconds. A small child releases a red balloon into a brilliant blue sky. The camera follows the balloon as it rises past skyscrapers, through clouds, and into space, where it joins a constellation of other balloons forming a heart shape. Warm golden light, soft volumetric clouds, gentle orchestral score, 24fps cinema quality.
+    tags:
+      length: medium
+      complexity: simple
+      style: animation
+      quality: "4k"
+      camera: orbital
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-an-05-anime-cooking
+    source: "generated"
+    text: |
+      Anime style slice-of-life, 8 seconds. A young chef in a small kitchen chops vegetables in rapid succession, ingredients flying through the air with cel-shaded animation. The pan erupts into flames, then a perfectly plated dish emerges, steam rising. Bright colors, exaggerated expressions, upbeat J-pop, smooth 2D animation.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: animation
+      quality: "4k"
+      camera: static
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-an-06-pixar-butterfly
+    source: "generated"
+    text: |
+      Pixar-style 3D animation, 9 seconds. A child in a garden holds out a finger, a glowing butterfly gently lands on it. The butterfly's wings shimmer with iridescent color. The child watches with wonder, breath held. Camera slowly orbits around the pair, soft volumetric light, dreamy orchestral score, 4K, soft fur on the child's sweater, subsurface scattering on skin.
+    tags:
+      length: medium
+      complexity: simple
+      style: animation
+      quality: "4k"
+      camera: orbital
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-an-07-anime-mecha-duel
+    source: "generated"
+    text: |
+      Anime mecha action, 10 seconds. Two giant robots clash in a ruined city at sunset, plasma blades drawn. Sparks fly, energy ripples, the camera cuts between close-ups of the pilots and wide shots of the duel. Pilot Trigger style, dynamic line art, vivid color, dramatic orchestral score, 24fps.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: animation
+      quality: production-grade
+      camera: tracking
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: gen-an-08-pixar-mealtime
+    source: "generated"
+    text: |
+      Pixar-style 3D animation, 7 seconds. A small furry creature discovers a piece of cheese on a kitchen counter. It stretches impossibly high, tippy-toes, reaches for the cheese, slides back down. It tries a different approach, building a tower of cookbooks. The cheese falls, the creature catches it, cheese in fur, proud smile. Shallow DOF, soft 3D-rendered surfaces, warm afternoon light through a window.
+    tags:
+      length: short
+      complexity: simple
+      style: animation
+      quality: "4k"
+      camera: static
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-an-09-cyber-anime-chase
+    source: "generated"
+    text: |
+      Cyberpunk anime, 12 seconds. A hooded figure sprints across neon rooftops in a futuristic megacity. A cyborg pursuer leaps between buildings, mechanical limbs glowing. The figure slides under a collapsing billboard, debris exploding. Industrial synthwave, heavy bass, rain on metal, dynamic cel shading, dramatic camera angles.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: animation
+      quality: production-grade
+      camera: tracking
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: gen-an-10-pixar-jellyfish
+    source: "generated"
+    text: |
+      Pixar-style 3D animation, 10 seconds. A child swims underwater with a glowing jellyfish, the bioluminescent tendrils casting soft light across the child's face. Tiny bubbles rise, schools of fish drift past. The jellyfish gently pulses, and the child reaches out to touch it with a small smile. Soft underwater caustics, volumetric god rays, ambient orchestral score, 4K render quality.
+    tags:
+      length: medium
+      complexity: simple
+      style: animation
+      quality: "4k"
+      camera: tracking
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: gen-an-11-anime-festival
+    source: "generated"
+    text: |
+      Anime slice-of-life, 9 seconds. A girl in a yukata walks through a summer festival at twilight, lanterns glowing, takoyaki stalls steaming. She pauses at a booth, buys a candy apple, takes a bite, colorful sparks of light dancing in her eyes. Petals drift on the wind, soft lo-fi music, warm pastel colors, vertical 9:16 mobile-first format.
+    tags:
+      length: medium
+      complexity: simple
+      style: animation
+      quality: "4k"
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-an-12-pixar-train-journey
+    source: "generated"
+    text: |
+      Pixar-style 3D animation, 12 seconds. A small fox cub rides on the back of a freight train crossing a wooden trestle bridge over a misty canyon at dawn. The cub looks up at the sky, bird wings flapping past. The camera pulls back revealing the magical landscape, the train a tiny thread across the mountains. Volumetric light, soft fur dynamics, 4K Pixar quality, ambient orchestral.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: animation
+      quality: "4k"
+      camera: orbital
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-an-13-cyber-anime-mirror
+    source: "generated"
+    text: |
+      Cyberpunk anime, 8 seconds. A girl in a vinyl jacket looks into a puddle at night, her reflection smiles back with mismatched eyes. She blinks, the reflection stays a moment longer before vanishing. Neon reflections ripple, synthwave, dramatic close-up, painterly digital illustration style, multiple lens flares.
+    tags:
+      length: short
+      complexity: simple
+      style: animation
+      quality: production-grade
+      camera: static
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: gen-an-14-pixar-mailbox
+    source: "generated"
+    text: |
+      Pixar-style 3D animation, 6 seconds. A small robot opens a mailbox on a quiet suburban street, looks inside, and finds a tiny flower. Its eyes light up, it cradles the flower in its mechanical hands. Soft morning light, suburban ambient sounds, 4K render quality, warm pink and yellow tones.
+    tags:
+      length: short
+      complexity: simple
+      style: animation
+      quality: "4k"
+      camera: static
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-an-15-anime-school-rooftop
+    source: "generated"
+    text: |
+      Anime slice-of-life, 10 seconds. Two high school students meet on the rooftop at sunset, one hands the other a love letter. The receiver blushes, the wind catches cherry blossoms swirling around them. Backlit silhouettes, soft piano, painterly digital illustration, 2D animation style, 24fps, romantic atmosphere.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: animation
+      quality: "4k"
+      camera: static
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-an-16-pixar-treehouse
+    source: "generated"
+    text: |
+      Pixar-style 3D animation, 11 seconds. A child climbs a winding ladder to a treehouse in a massive oak tree. Inside, a small robot waits, holding a treasure map. The child grabs their backpack, the robot's eyes light up, they climb out onto the branch together. Soft 3D-rendered surfaces, volumetric god rays through leaves, 4K cinematic, ambient woodland sounds.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: animation
+      quality: "4k"
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-an-17-anime-samurai-rain
+    source: "generated"
+    text: |
+      Anime samurai, 10 seconds. A samurai in tattered robes stands in a bamboo forest in heavy rain. They draw their katana in slow-motion, the blade reflection slicing the rain. A single opponent emerges from the mist, mirrored. Hand-drawn impact frames, dynamic line art, 24fps background, 12fps character animation, dramatic lighting.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: animation
+      quality: production-grade
+      camera: static
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: gen-an-18-pixar-music-lesson
+    source: "generated"
+    text: |
+      Pixar-style 3D animation, 8 seconds. A small mouse tries to play a grand piano, its feet barely reaching the pedals. The piano keys move on their own, the music rises, the mouse smiles and bobs its head. Other mice in the audience tap their feet. Soft volumetric stage lighting, orchestral score, 4K Pixar quality.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: animation
+      quality: "4k"
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-an-19-anime-stargazing
+    source: "generated"
+    text: |
+      Anime slice-of-life, 9 seconds. Two teens lay on a school rooftop at night, looking up at stars. A shooting star streaks across, the boy points. The girl smiles, the camera pans up to the star, the night sky filling with magical constellations. Soft piano, painterly digital illustration, warm atmosphere, 24fps.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: animation
+      quality: "4k"
+      camera: static
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-an-20-pixar-paint-splash
+    source: "generated"
+    text: |
+      Pixar-style 3D animation, 9 seconds. A child dips a brush into vibrant paint and slashes it across a giant canvas. The paint erupts into 3D shapes—a butterfly, a dragon, a galaxy. The child giggles and creates more, the studio now full of floating color. Soft 3D-rendered surfaces, vibrant palette, 4K quality, ambient music.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: animation
+      quality: "4k"
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-3d-01-watch-explode
+    source: "generated"
+    text: |
+      Three.js aesthetic, 12 seconds. A complex mechanical watch movement explodes outward in slow-motion along the z-axis, gears, springs, and rubies hovering in space. Each component spins at unique synchronized rates. Camera slowly orbits the assembly. Brushed titanium and gold material shaders, studio softbox lighting, ambient occlusion, depth-of-field blur on non-focused parts, dark void background.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: "3d"
+      quality: "8k"
+      camera: orbital
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-3d-02-orbiting-tetrahedrons
+    source: "generated"
+    text: |
+      Three.js WebGL aesthetic, 8 seconds. An abstract geometric sculpture of glass tetrahedrons orbits a glowing core. Chromatic aberration along the glass edges, bloom effects on the emissive nodes, low-poly wireframe overlay fading in and out. Real-time reflection mapping, dark environment, smooth 360-degree camera spin, 60fps.
+    tags:
+      length: short
+      complexity: simple
+      style: "3d"
+      quality: production-grade
+      camera: orbital
+      physics: basic
+      refs: none
+      cost: medium
+
+  - id: gen-3d-03-car-transform
+    source: "generated"
+    text: |
+      Augmented reality effect, 10 seconds. A vintage car concept sketch on paper; the camera pushes in, lines lift off the page and gain dimension. Color washes in, the car becomes photorealistic 3D, drifting off the paper onto a real road, driving away. Seamless 2D-to-3D transition, studio lighting to outdoor golden hour, photorealistic, 4K.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: "3d"
+      quality: "4k"
+      camera: dolly
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-3d-04-ue5-fireball
+    source: "generated"
+    text: |
+      Unreal Engine 5 cinematic, 10 seconds. A fireball erupts on a stone altar in a dark ritual chamber, sending embers cascading outward. The camera arcs around the explosion, capturing volumetric smoke, particle effects, and dynamic lighting. Photorealistic CGI, AAA quality, ambient occlusion, cinematic camera, 4K.
+    tags:
+      length: medium
+      complexity: simple
+      style: "3d"
+      quality: "4k"
+      camera: orbital
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: gen-3d-05-spaceship-blueprint
+    source: "generated"
+    text: |
+      Hyper-detailed 3D CAD visualization, 12 seconds. A complex spaceship blueprint on a dark grid. Wireframe panels lift off, fold outward, and form a fully realized 3D spaceship. The camera orbits as the ship rotates slowly, blue glowing accents pulsing. Brushed metal materials, HDRI lighting, ambient occlusion, technical schematic aesthetic.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: "3d"
+      quality: "8k"
+      camera: orbital
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-3d-06-hologram-globe
+    source: "generated"
+    text: |
+      Holographic 3D CGI, 10 seconds. A watch activates, and a holographic 3D globe of the Earth snaps open in stylized 2D flat design floating beside the user. Glowing UI panels appear. The camera orbits the holographic globe, buildings rendered in wireframe, pulsing blue data streams. Sci-fi UI sounds, soft ambient hum, 4K.
+    tags:
+      length: medium
+      complexity: simple
+      style: "3d"
+      quality: "4k"
+      camera: orbital
+      physics: basic
+      refs: none
+      cost: medium
+
+  - id: gen-3d-07-molecular-zoom
+    source: "generated"
+    text: |
+      Scientific 3D visualization, 10 seconds. A waterfall in slow-motion, the camera dives into a single droplet, revealing molecular structures within. The structures rotate, showing bonds and atomic motion. The camera pulls back out of the droplet, the waterfall continuing. Photorealistic CGI, 4K, scientific aesthetic, ambient music, neon color highlights.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: "3d"
+      quality: "4k"
+      camera: dolly
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: gen-3d-08-sword-formation
+    source: "generated"
+    text: |
+      Three.js aesthetic, 8 seconds. A glowing energy sword disassembles into thousands of particles, each a tiny piece of the blade. The particles form a swirling galaxy around the hilt, then reform the sword in a burst of light. Camera slow orbits. Bloom effects, chromatic aberration, dark environment, 4K, 60fps.
+    tags:
+      length: short
+      complexity: simple
+      style: "3d"
+      quality: "4k"
+      camera: orbital
+      physics: particle
+      refs: none
+      cost: medium
+
+  - id: gen-3d-09-luxury-yacht
+    source: "generated"
+    text: |
+      Unreal Engine 5 cinematic, 12 seconds. A luxury superyacht sits in turquoise Caribbean waters at noon. The camera slowly orbits, revealing a helicopter pad, infinity pool, and a stunning interior. Mist rises from the sundeck. Sunlight reflects off glass and chrome. Photorealistic CGI, 8K, soft particle effects, ambient sea sounds.
+    tags:
+      length: medium
+      complexity: simple
+      style: "3d"
+      quality: "8k"
+      camera: orbital
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: gen-3d-10-clockwork-city
+    source: "generated"
+    text: |
+      Steampunk 3D, 14 seconds. A vast clockwork city floats in a hazy void, gears turning, steam rising. Tiny dirigibles navigate between the buildings. The camera flies through the city, revealing intricate mechanical detail. Photorealistic CGI, 4K, atmospheric lighting, ambient orchestral score.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: "3d"
+      quality: "4k"
+      camera: tracking
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: gen-3d-11-product-unfold
+    source: "generated"
+    text: |
+      3D product reveal, 8 seconds. A sleek black phone case rests on a reflective surface. The case unfolds and morphs into a floating 3D wireframe of the phone inside. Color and texture wash in, the phone rotates 360 degrees, glowing details appear. Studio lighting, soft shadows, 4K, smooth motion.
+    tags:
+      length: short
+      complexity: simple
+      style: "3d"
+      quality: "4k"
+      camera: orbital
+      physics: basic
+      refs: none
+      cost: medium
+
+  - id: gen-3d-12-reef-bioluminescence
+    source: "generated"
+    text: |
+      Photorealistic 3D ocean reef, 10 seconds. The camera dives through a coral reef, bioluminescent fish glowing in the dark depths. Water particles swirl, kelp sways. Each fish leaves a luminous trail. Studio HDRI lighting, subsurface scattering on the fish, ultra-clean 4K, ambient underwater score.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: "3d"
+      quality: "4k"
+      camera: tracking
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: gen-3d-13-robot-formation
+    source: "generated"
+    text: |
+      CGI assembly sequence, 10 seconds. A robotic arm assembles itself from scattered parts on a factory floor. Each component clicks into place with precision. Sparks fly from welding joints. The completed robot stands, eyes glowing red. Industrial 3D, photorealistic, technical lighting, 4K, ambient factory sounds.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: "3d"
+      quality: "4k"
+      camera: tracking
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: gen-3d-14-mushroom-forest
+    source: "generated"
+    text: |
+      Surreal 3D forest, 12 seconds. A forest of glowing mushrooms at twilight, the camera slowly flying through. Spores drift through the air, tiny creatures peek from behind stalks. Unreal Engine 5 quality, subsurface scattering on the mushroom caps, 4K, deep teal and magenta palette, ambient music.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: "3d"
+      quality: "4k"
+      camera: tracking
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: gen-3d-15-crystal-growth
+    source: "generated"
+    text: |
+      Scientific 3D, 8 seconds. A crystal grows in time-lapse from a tiny seed to a massive geometric structure. Each face catches light with sharp refractions. Camera slowly orbits as the crystal completes. Photorealistic CGI, 4K, ambient music, octane render quality.
+    tags:
+      length: short
+      complexity: simple
+      style: "3d"
+      quality: "4k"
+      camera: orbital
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-3d-16-fluid-form
+    source: "generated"
+    text: |
+      Abstract 3D, 10 seconds. A blob of mercury-like liquid morphs through geometric shapes—sphere, torus, DNA strand, fractal—each transformation smooth and reflective. The camera holds static. Photorealistic CGI, dark environment, HDRI lighting, sharp specular highlights, 4K, ambient electronic music.
+    tags:
+      length: medium
+      complexity: simple
+      style: "3d"
+      quality: "4k"
+      camera: static
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: gen-3d-17-mountains-from-particles
+    source: "generated"
+    text: |
+      Three.js aesthetic, 10 seconds. A landscape of mountain peaks forms from a swarm of golden particles. The particles coalesce into rocky terrain, snow caps appearing on the highest peaks. The camera pulls back to reveal the full mountain range. Photorealistic CGI, 4K, ambient orchestral score, dramatic lighting.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: "3d"
+      quality: "4k"
+      camera: orbital
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: gen-3d-18-magic-book
+    source: "generated"
+    text: |
+      Three.js aesthetic, 12 seconds. A leather-bound book opens, its pages lifting into the air as 3D-modeled warriors, dragons, and castles form and battle above. The camera slowly circles the scene, the figures casting shadows on the floor. Photorealistic CGI, 4K, warm library lighting, ambient music.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: "3d"
+      quality: "4k"
+      camera: orbital
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-3d-19-synthwave-sunset
+    source: "generated"
+    text: |
+      Synthwave 3D, 10 seconds. A glowing grid extends to the horizon under a pink and orange sunset. Geometric shapes float in the sky, a chrome sphere rolls across the grid. The camera slowly drives forward. Photorealistic CGI, 4K, neon glow, ambient electronic music.
+    tags:
+      length: medium
+      complexity: simple
+      style: "3d"
+      quality: "4k"
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-3d-20-medieval-armory
+    source: "generated"
+    text: |
+      Unreal Engine 5 cinematic, 12 seconds. A medieval armory interior, weapons and armor displayed on racks. A blacksmith hammers a glowing blade on an anvil, sparks flying. The camera pans across the room, revealing suits of armor standing like silent guards. Photorealistic CGI, 4K, warm torchlight, particle effects, ambient fire sounds.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: "3d"
+      quality: "4k"
+      camera: tracking
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: gen-mg-01-typography-build
+    source: "generated"
+    text: |
+      Kinetic typography, 8 seconds, 1080p. Bold text "BUILD" pulses in center screen. Letters slam in from off-screen edges, locking into place with elastic bounce. Then "BUILD" splits into "BUILD" "SHIP" "SCALE" with letters sliding in. Each word slams with impact blur, then fragments into particles that reform the next. Dark background, neon accent lines, EDM-timed, clean motion graphics.
+    tags:
+      length: short
+      complexity: multi_stage
+      style: motion_graphics
+      quality: "4k"
+      camera: static
+      physics: particle
+      refs: none
+      cost: medium
+
+  - id: gen-mg-02-classified-hud
+    source: "generated"
+    text: |
+      Military thriller-style kinetic typography, 10 seconds. Glitchy text "CLASSIFIED" appears with scan lines and static interference. Redacted bars cover parts. The text dissolves into "OPERATION: NIGHTFALL" with tactical HUD overlays, targeting reticles. Coordinates and data streams flash across screen. Final text "INCOMING" pulses red with alarm sound. Dramatic orchestral hits, static noise, alarm beeps.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: motion_graphics
+      quality: "4k"
+      camera: static
+      physics: none
+      refs: none
+      cost: medium
+
+  - id: gen-mg-03-data-viz-growth
+    source: "generated"
+    text: |
+      Infographic motion graphic, 12 seconds. Animated bar chart grows left-to-right showing "Latency ms" dropping from 120 to 8. Numbers count up as bars transition from blue to green. Subtle camera push. Clean sans font, dark UI aesthetic, data-viz style, polished transitions.
+    tags:
+      length: medium
+      complexity: simple
+      style: motion_graphics
+      quality: "4k"
+      camera: static
+      physics: none
+      refs: none
+      cost: medium
+
+  - id: gen-mg-04-vector-logo
+    source: "generated"
+    text: |
+      Vector logo animation, 6 seconds. A flat geometric logo forms from individual lines drawing themselves in sequence. Each line eases into place, then the logo fills with a gradient color. The completed logo pulses gently. Clean 2D animation, no 3D, corporate brand aesthetic, 4K, ambient music.
+    tags:
+      length: short
+      complexity: simple
+      style: motion_graphics
+      quality: "4k"
+      camera: static
+      physics: none
+      refs: none
+      cost: cheap
+
+  - id: gen-mg-05-lyric-visualizer
+    source: "generated"
+    text: |
+      Kinetic lyric visualizer, 9 seconds. Words from a sample phrase fly in from edges, orbit a central glowing orb, then collapse into a single bold headline. Glitch accents, cyberpunk color (magenta, cyan), high-energy motion graphics, synced to implied beat.
+    tags:
+      length: short
+      complexity: multi_subject
+      style: motion_graphics
+      quality: "4k"
+      camera: static
+      physics: particle
+      refs: none
+      cost: medium
+
+  - id: gen-mg-06-lower-third
+    source: "generated"
+    text: |
+      Broadcast lower-third title package, 6 seconds. Clean lower third slides up: name plus title, thin accent line, fades. Then main title "PRODUCTION NOTES" smash-cuts center with quick scale and opacity. Minimal, broadcast style, 1080p, fast render.
+    tags:
+      length: short
+      complexity: simple
+      style: motion_graphics
+      quality: basic
+      camera: static
+      physics: none
+      refs: none
+      cost: cheap
+
+  - id: gen-mg-07-machine-reveal
+    source: "generated"
+    text: |
+      3D liquid glass motion graphics, 10 seconds. A glass orb floats in dark space, reflections and refractions. The orb morphs into a geometric shape, smooth liquid transition, ripples across the surface. The shape fractures into floating particles that reassemble. Final form: a glowing 3D logo. Ambient electronic music, soft whoosh sounds.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: motion_graphics
+      quality: production-grade
+      camera: orbital
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: gen-mg-08-tech-explainer
+    source: "generated"
+    text: |
+      Motion graphics explainer, 10 seconds. Flat design icons (server, database, vector) assemble themselves on a dark grid, connecting with animated lines. Text "VECTOR MEMORY SYSTEMS" types on with cursor blink, then scales up with elastic ease. Clean corporate tech style, 4K, no 3D.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: motion_graphics
+      quality: "4k"
+      camera: static
+      physics: none
+      refs: none
+      cost: medium
+
+  - id: gen-mg-09-corporate-team
+    source: "generated"
+    text: |
+      Japanese-language infographic motion graphics, 8 seconds. Clean editorial style, dark background, white and accent color text. Title: "Team Skill Analysis" with subtitle. Animated bar charts appear, character icons with stats, smooth data visualizations. Professional motion graphics, subtle transitions, upbeat corporate music.
+    tags:
+      length: short
+      complexity: multi_subject
+      style: motion_graphics
+      quality: "4k"
+      camera: static
+      physics: none
+      refs: none
+      cost: medium
+
+  - id: gen-mg-10-liquid-orb
+    source: "generated"
+    text: |
+      3D brand reveal, 10 seconds. A glass orb floats in dark space, internal reflections and refractions. The orb morphs into a geometric shape through smooth liquid transition, ripples spreading outward. The shape fractures into floating particles that reassemble into a glowing 3D logo. Ambient electronic music, soft whoosh sounds.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: "3d"
+      quality: production-grade
+      camera: orbital
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: gen-mg-11-cyberpunk-title
+    source: "generated"
+    text: |
+      3D kinetic motion graphics title reveal, 8 seconds. Bold white sans-serif typography spelling "NEURAL NET" breaking out of a dark glass surface. Glitch artifacts, digital noise displacement, floating HUD UI elements, vector grid lines expanding in background. Fast whip-pan transitions, high contrast, 60fps, vector graphics look.
+    tags:
+      length: short
+      complexity: simple
+      style: motion_graphics
+      quality: "4k"
+      camera: static
+      physics: none
+      refs: none
+      cost: medium
+
+  - id: gen-mg-12-tech-hud
+    source: "generated"
+    text: |
+      First-person HUD, 6 seconds. A translucent cyan heads-up display overlays a blurred aerial view of a city grid at night. Data panels slide in from the left edge. A circular radar widget spins in the bottom right corner. A vertical bar graph animates upward in the top left. Thin grid lines scan horizontally across the screen. All UI elements have subtle chromatic aberration, 1px scan-line texture, 15% opacity. Tech-military interface aesthetic.
+    tags:
+      length: short
+      complexity: simple
+      style: motion_graphics
+      quality: "4k"
+      camera: static
+      physics: none
+      refs: none
+      cost: medium
+
+  - id: gen-mg-13-product-launch
+    source: "generated"
+    text: |
+      Product launch motion graphic, 10 seconds. A glowing product silhouette appears on beat 1. On beat 2, the product rotates 90 degrees, a light sweep crosses. On beat 3, the product fully reveals, glowing details, particles. On the final beat, the brand name appears with impact. Professional studio lighting, glossy 3D product render, electronic music.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: motion_graphics
+      quality: "4k"
+      camera: orbital
+      physics: particle
+      refs: none
+      cost: medium
+
+  - id: gen-mg-14-how-to-write
+    source: "generated"
+    text: |
+      Clean editorial infographic motion graphics, 10 seconds. Title "How to Write a Cinematic Video Prompt" fades in, clean sans-serif font, dark background with subtle gradient. Three sections appear: Camera (icon plus bullet rules), Motion (icon plus bullet rules), Subject (icon plus bullet rules). Each section highlights in sequence with subtle animation. Final frame with key takeaway. Professional motion design, clean transitions, soft ambient music.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: motion_graphics
+      quality: "4k"
+      camera: static
+      physics: none
+      refs: none
+      cost: medium
+
+  - id: gen-mg-15-streaming-overlay
+    source: "generated"
+    text: |
+      Streaming overlay package, 8 seconds. Animated brackets and lower thirds appear in sequence with glitch effects. A "LIVE" badge pulses, viewer count rises, chat bubbles pop. Clean modern aesthetic, dark background, neon pink accents, 4K, broadcast quality.
+    tags:
+      length: short
+      complexity: multi_subject
+      style: motion_graphics
+      quality: "4k"
+      camera: static
+      physics: none
+      refs: none
+      cost: cheap
+
+  - id: gen-mg-16-portrait-reveal
+    source: "generated"
+    text: |
+      Sports portrait reveal, 12 seconds. A silhouette of an athlete forms from scattered particles. The particles coalesce into a sharp portrait. The portrait shifts into a sequence of three action shots: running, jumping, celebrating. The final frame shows the athlete mid-celebration with team branding. Cinematic 4K, dynamic transitions, ambient music.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: motion_graphics
+      quality: "4k"
+      camera: static
+      physics: particle
+      refs: none
+      cost: medium
+
+  - id: gen-mg-17-audio-waveform
+    source: "generated"
+    text: |
+      Audio waveform visualization, 10 seconds. A dynamic waveform pulses to a beat, gradient background, smooth animations. Animated album cover art with subtle parallax, title text pulsing to speech rhythm. Mix of waveform and cover art, with quotes appearing as kinetic text. Ambient electronic music as primary audio track.
+    tags:
+      length: medium
+      complexity: simple
+      style: motion_graphics
+      quality: "4k"
+      camera: static
+      physics: none
+      refs: audio
+      cost: medium
+
+  - id: gen-mg-18-stock-chart
+    source: "generated"
+    text: |
+      Financial motion graphic, 10 seconds. A 3D rising bar chart with glowing data points and line overlays. Numbers count up rapidly, percentage indicators pulse. Clean dark UI aesthetic, monospace font, teal and red accents, 4K, ambient electronic.
+    tags:
+      length: medium
+      complexity: simple
+      style: motion_graphics
+      quality: "4k"
+      camera: static
+      physics: none
+      refs: none
+      cost: medium
+
+  - id: gen-mg-19-glitch-art
+    source: "generated"
+    text: |
+      Glitch art motion graphic, 8 seconds. Text "404" appears in red, flickers, distorts. The text glitches into "RETRY" in green, then "SUCCESS" in blue. Heavy scan lines, color channel separation, RGB split effects. Cyberpunk aesthetic, dark background, 60fps, 4K.
+    tags:
+      length: short
+      complexity: multi_stage
+      style: motion_graphics
+      quality: "4k"
+      camera: static
+      physics: none
+      refs: none
+      cost: cheap
+
+  - id: gen-mg-20-sports-scoreboard
+    source: "generated"
+    text: |
+      Sports broadcast motion graphic, 10 seconds. A scoreboard template animates into place: team logos, score, time remaining. Highlights cycle: a scorer appears, score updates with a flash. Final frame: full-screen score with "FINAL" stamp. 4K, broadcast style, energetic transitions, ambient crowd roar.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: motion_graphics
+      quality: "4k"
+      camera: static
+      physics: none
+      refs: none
+      cost: medium
+
+  - id: gen-ref-01-video-subject
+    source: "generated"
+    text: |
+      [Inputs: Subject = @Image1, Background = @Image2, Camera Logic = @Video1] Continuous 10-second shot starring character @Image1 situated inside the environment of @Image2. Match the push-in and orbital arc rate of @Video1. Start with an over-the-shoulder wide shot framing @Image1 looking outward. At t=3s, execute a tight arc dolly to reveal a frontal close-up. Realistic fabric movement, catchlights in eyes, micro-expressions. 16:9, 24fps, cinematic master grade.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: cinematic
+      quality: production-grade
+      camera: orbital
+      physics: cloth
+      refs: multi
+      cost: expensive
+
+  - id: gen-ref-02-lipsync-studio
+    source: "generated"
+    text: |
+      [Inputs: Audio = @Audio1] 10-second lip-sync dialogue scene. A woman in her 30s with auburn hair speaks directly to camera in a professional studio setting, mouth movements precisely synced to @Audio1. Her expression shifts to amused at the 4-second mark, matching the vocal tone. Subtle head nods and micro-expressions align with speech cadence. Studio lighting, shallow DOF, crisp focus, 4K.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: static
+      physics: basic
+      refs: audio
+      cost: expensive
+
+  - id: gen-ref-03-audio-dance
+    source: "generated"
+    text: |
+      [Inputs: Audio = @Audio1] 12-second dance sequence driven by @Audio1. Wide shot of a dancer in an empty warehouse, choreography precisely matching the rhythm of @Audio1. Close-up of hands and feet, dust floating in slanted afternoon light, every movement synced to the beat. Slow-motion medium shot of the dancer spinning. Cinematic, warm light, handheld sway, 4K.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: "4k"
+      camera: tracking
+      physics: particle
+      refs: audio
+      cost: expensive
+
+  - id: gen-ref-04-product-demo
+    source: "generated"
+    text: |
+      [Inputs: Product = @Image1, Packaging = @Image2] 10-second product demonstration. Overhead shot of @Image1 placed on a marble counter. Cut to medium shot of hands unboxing @Image2. Close-up of @Image1 in use, soft morning light. Ambient kitchen sounds, ceramic clinks, warm neutral tones, 4K, product photography aesthetic.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: photorealistic
+      quality: production-grade
+      camera: dolly
+      physics: basic
+      refs: multi
+      cost: expensive
+
+  - id: gen-ref-05-character-emotion
+    source: "generated"
+    text: |
+      [Inputs: Reference = @Video1] Continuous 10-second shot. A woman in a vinyl jacket walks up to a mirror in a dim bathroom. Her reflection mimics with a half-second delay. After a beat she breaks down screaming, her facial motion and timing fully referenced from @Video1. Indoor harsh overhead light, 7s, anamorphic, photorealistic.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: static
+      physics: basic
+      refs: video
+      cost: expensive
+
+  - id: gen-ref-06-multimodal-character
+    source: "generated"
+    text: |
+      [Inputs: Character = @Image1, Camera = @Video1, Audio = @Audio1] Dynamic 8-second music video. Character @Image1 performs the tracking camera movement and facial framing defined in @Video1. Lighting shifts between warm amber and deep violet in direct rhythm with the synth pads in @Audio1. Maintain facial structure and clothing details from @Image1 across the generation without drift. Photorealistic, 16:9 ratio, 4K.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: basic
+      refs: multi
+      cost: expensive
+
+  - id: gen-ref-07-asmr-sound
+    source: "generated"
+    text: |
+      [Inputs: Audio = @Audio1] 10-second ASMR macro sequence. Light blue skincare gel on a glass surface. A hand taps, twists the cap, scoops the gel, presses and spreads it. All motion and friction sounds tightly synced to @Audio1. Cool back-light, the gel glows like a gemstone, vertical 9:16, 4K, intimate mood.
+    tags:
+      length: medium
+      complexity: simple
+      style: photorealistic
+      quality: "4k"
+      camera: static
+      physics: basic
+      refs: audio
+      cost: expensive
+
+  - id: gen-ref-08-character-fight
+    source: "generated"
+    text: |
+      [Inputs: Characters = @Image1, @Image2, Motion = @Video1] 8-second fight sequence. Characters from @Image1 and @Image2 fight using the exact movements and timing from @Video1. Setting: abandoned parking lot at night. Add impact VFX and dust. Keep proportions and choreography faithful. Cinematic handheld, 4K, anamorphic.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: particle
+      refs: video
+      cost: expensive
+
+  - id: gen-ref-09-saxophone-audio
+    source: "generated"
+    text: |
+      [Inputs: Audio = @Audio1] 11-second cinematic shot. A jazz saxophonist on a floating lily pad in a bioluminescent lake at night. Every note sends blue-green light ripples across the water and into the starry sky. Slow orbiting drone. Match timing and energy of @Audio1. Cinematic, rich color, dreamy atmosphere, 4K.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: orbital
+      physics: fluid
+      refs: audio
+      cost: expensive
+
+  - id: gen-ref-10-motion-transfer
+    source: "generated"
+    text: |
+      [Inputs: Motion = @Video1, Subject = @Image1] 10-second shot. Replicate the exact camera dolly speed and character choreography from @Video1. Subject @Image1 replaces the dancer in the original footage. Maintain @Image1's facial features and clothing. Setting: damp stone courtyard with fire torches. Specular highlights, sparks flying on impact. 1080p, 24fps.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: particle
+      refs: video
+      cost: expensive
+
+  - id: gen-ref-11-voiceover
+    source: "generated"
+    text: |
+      [Inputs: Audio = @Audio1] 10-second dialogue scene. Medium two-shot of a man and woman sitting across from each other in a dimly lit diner, rain on the window. The woman speaks, mouth synced to @Audio1. Dialogue: "I've been waiting for you to say that for three years." Delivered with tears in her eyes, voice cracking. Cut to the man's reaction. Ambient diner sounds, rain, soft jazz, 4K, warm tungsten lighting.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: cinematic
+      quality: production-grade
+      camera: static
+      physics: fluid
+      refs: audio
+      cost: expensive
+
+  - id: gen-ref-12-asmr-glass
+    source: "generated"
+    text: |
+      [Inputs: Audio = @Audio1] 12-second ASMR product reveal. A crystal glass filled with golden honey on a dark surface. Honey slowly drips down the side. A finger taps the glass, producing a chime. All motion and friction sound synced to @Audio1. Cinematic 4K, shallow DOF, 60fps slow-motion, intimate mood.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: "4k"
+      camera: static
+      physics: fluid
+      refs: audio
+      cost: expensive
+
+  - id: gen-ref-13-anime-music
+    source: "generated"
+    text: |
+      [Inputs: Audio = @Audio1] 10-second anime music video. A character in a Tokyo cafe stares out the window at night. Her expression shifts as the music swells; tear drops. Cyberpunk anime style, neon reflections, dynamic line art, 24fps, synced to @Audio1.
+    tags:
+      length: medium
+      complexity: simple
+      style: animation
+      quality: production-grade
+      camera: static
+      physics: fluid
+      refs: audio
+      cost: expensive
+
+  - id: gen-ref-14-dance-battle
+    source: "generated"
+    text: |
+      [Inputs: Motion = @Video1, Audio = @Audio1] 15-second photorealistic street dance battle. Wet neon street. First 5 seconds: solo floorwork matching @Video1 choreography. Remaining 10 seconds: group synchronized breaking/popping locked to @Audio1 beat. Stable cinematic camera, realistic physics, 4K, anamorphic.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: fluid
+      refs: video
+      cost: expensive
+
+  - id: gen-ref-15-trailer
+    source: "generated"
+    text: |
+      [Inputs: Character = @Image1, Audio = @Audio1] 15-second movie trailer shot. @Image1 stands on a rooftop at dawn as the city below awakens. Slow zoom revealing their face, determined eyes. Audio synced orchestral swell. Cinematic 4K, anamorphic, photorealistic, dramatic lighting.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: basic
+      refs: multi
+      cost: expensive
+
+  - id: r1-perfume-commercial
+    source: "user-provided"
+    text: |
+      A luxury crystal perfume bottle with faceted edges and a gold cap floats weightlessly in a void of deep matte black. The bottle rotates slowly on its vertical axis, completing a quarter turn. Razor-sharp caustic light refractions dance across the glass surface. Two opposing strip lights — one warm amber, one cool white — create dramatic dual-tone reflections on the faceted crystal. Tiny golden particles drift lazily through the air around the bottle. A single droplet of amber liquid clings to the bottle's shoulder, catching the light. Smooth orbiting camera movement. Extreme product close-up. 8K commercial quality, ultra-sharp focus throughout, professional studio lighting.
+    tags:
+      length: short
+      complexity: simple
+      style: photorealistic
+      quality: "8k"
+      camera: orbital
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: r2-alpine-sunrise
+    source: "user-provided"
+    text: |
+      Aerial drone shot slowly pushing forward over a vast alpine valley at dawn, jagged peaks resembling the Dolomites rising on both sides. Alpenglow — warm pink light — kisses the highest summits while the valley below remains in cool blue shadow. A single golden eagle soars across frame from left to right, wings fully extended. God rays break through a gap in the mountain ridge, illuminating a patch of wildflower meadow. Wisps of morning mist drift through the valley floor. Cinematic color grading, photorealistic, 4K.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: cinematic
+      quality: "4k"
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: r3-basketball-dunk
+    source: "user-provided"
+    text: |
+      Apex of a powerful one-handed slam dunk. The athlete hangs in mid-air, muscles fully extended, jersey rippling with motion. Individual droplets of sweat and arena dust frozen in mid-air catching arena light like tiny prisms. The backboard shudders on impact. Low-angle from below the basket looking up, emphasizing height and power. Stadium floodlights create dramatic rim lighting. 1000fps feel, extreme slow motion. 4K ultra-realistic, hyper-detailed.
+    tags:
+      length: short
+      complexity: simple
+      style: cinematic
+      quality: "4k"
+      camera: static
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: r4-watch-yacht
+    source: "user-provided"
+    text: |
+      A distinguished man in his 40s in a perfectly tailored navy linen suit stands at the polished teak railing of a luxury sailing yacht at golden hour. He gazes at the horizon with quiet confidence. The camera starts as a wide establishing shot showing the yacht slicing through crystalline Mediterranean water, then slowly pushes in to a medium close-up, finally settling on an extreme close-up of the brushed titanium dive watch on his left wrist. The watch face reflects the orange-gold sky. His fingers tap once on the railing — the watch catches the light. Sea spray glitters in the air behind him, backlit by the low sun. Warm amber key light from the setting sun. Cool blue fill light from the reflected ocean. Cinematic commercial quality. Anamorphic lens, shallow depth of field transitioning with the push-in.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: r5-london-street
+    source: "user-provided"
+    text: |
+      Photorealistic cinematic fashion video set on an elegant London shopping street inspired by Bond Street. A stylish British woman in her late 20s walks confidently past a luxury boutique. She wears gold earrings, a burgundy double-breasted blazer, matching mini skirt, a light blue ruffled silk blouse, a structured dark red leather shoulder bag, and metallic pointed heels. Her chestnut hair is styled in a sleek low bun. Her phone rings. She glances at the screen, stops gracefully, and answers. A male voice asks, "Hello there, can you please scan your outfit?" She smiles and replies in a soft British accent, "I guess so." The camera performs a smooth head-to-toe scan, displaying elegant text labels for each outfit item, then ends on a confident editorial pose in front of the boutique window. Bright natural sunlight, shallow depth of field, smooth gimbal movement, luxury editorial aesthetic.
+    tags:
+      length: medium
+      complexity: simple
+      style: photorealistic
+      quality: production-grade
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: r6-anime-tennis
+    source: "user-provided"
+    text: |
+      Outdoor hard court tennis arena during bright summer afternoon. Clean blue sky with drifting clouds. Palm trees and modern city architecture visible in the far background. Strong sunlight creates vivid shadows on the court surface. Slight wind movement in clothing, hair, and tennis net. Stylized sports anime atmosphere. LUNA SOLACE tosses the tennis ball upward confidently and launches a powerful spin-heavy serve. Neon yellow motion streaks follow the racket swing. The ball slams into the opponent's court with explosive bounce and visible topspin trails. MINT ASHE instantly reacts with elegant lateral movement and completes a precise defensive return. Clear racket-to-ball contact shown. Sunlight flashes dynamically across the court. Painterly digital illustration style. Large summarized color blocks. Visible hard-edge brush strokes. Heavy shadows and bright sunlight contrast. No photorealism. No realistic CGI. Inspired by modern anime openings.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: animation
+      quality: "4k"
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: medium
+
+  - id: r7-noir-alley
+    source: "user-provided"
+    text: |
+      A detective in a trench coat walks through a rain-soaked alley at night. Neon signs in red and blue reflect in the puddles, creating fractured pools of colored light. Steam rises from a manhole cover. The camera executes a slow tracking shot following the detective from behind, maintaining a medium distance. Film noir style, high contrast with deep shadows, 1940s aesthetic colliding with cyberpunk. Wet surfaces catch every light source. Cinematic, 21:9 aspect ratio, 10-15 seconds.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: r8-bamboo-duel
+    source: "user-provided"
+    text: |
+      A white-clad swordsman faces a straw-cloaked swordsman in a bamboo forest under heavy rain. The camera slowly pans, shifting focus between raindrops and sword hilts, building tension. Thunder flashes, and they charge simultaneously. Side-view shot captures mud-splattered footsteps, then a slow-motion weapon clash shows circular shockwaves scattering raindrops and bamboo leaves. The scene resumes normal speed with both landing back-to-back as the straw-cloaked swordsman's hat splits open, ending abruptly with dramatic impact. Crouching Tiger Hidden Dragon aesthetic, golden hour backlight creating silhouette effects.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: r9-lightning-sphere
+    source: "user-provided"
+    text: |
+      In a storm-soaked industrial ruin, her hand snaps forward catching a crackling violet lightning sphere suspended between broken metal beams, electricity arcing violently between surfaces. She crushes it instantly — blinding energy surges through her fingers as fractal lightning veins explode across both forearms. The ground trembles as enemies emerge — dozens of jagged obsidian creatures crawl rapidly across walls and ground, their glowing red cores flickering, while a colossal iron titan rises behind them. She lunges forward — first strike, she grabs a creature mid-leap and overloads it, its body bursting into a spray of glowing shards. Second attack, she slams both hands down releasing a radial lightning surge that chains between multiple enemies, frying them mid-motion. The titan retaliates firing a massive beam of compressed energy, she sidesteps violently, catching the beam with one hand, redirecting it upward while sprinting straight at the titan. She runs up its collapsing body using magnetic pulls, reaches the core and drives both hands inside, unleashing a catastrophic surge. Slow motion as the core fractures, energy tearing outward in layered shockwaves, metal plates peeling away. She rockets skyward, both lightning-glowing hands at frame edges, looking down as the titan collapses in a chain reaction explosion. 15 seconds, 1 shot, 16:9.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: static
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: r10-pov-gladiator
+    source: "user-provided"
+    text: |
+      One continuous shot, POV gladiator perspective in the Colosseum arena, no cuts, no zoom, natural head movement. A furious enemy warrior sprints straight toward the camera through thick dust and sunlight, heavy footsteps shaking the ground. As he reaches close the POV character reacts instantly — grabs him mid-charge and slams him violently onto the sand, powerful impact, dust explosion. No pause, immediate chaos erupts all around, multiple gladiators fighting simultaneously, intense close combat everywhere, swords clashing, shields smashing, bodies colliding, archers releasing arrows overhead, a chariot bursts through the scene. POV character fights barehanded with raw force — blocking strikes, grabbing opponents, throwing them aside. Fast reactions, heavy hits, kinetic movement, camera shaking from impacts. Dust in the air, dramatic sunlight beams cutting through shadows. Epic scale, high intensity battlefield, cinematic, photorealistic, ultra detailed, motion blur on hits. 15 seconds, 1 shot, 16:9.
+    tags:
+      length: long
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: fpv
+      physics: particle
+      refs: none
+      cost: expensive
+
+  - id: r11-ceramic-mug-swap
+    source: "user-provided"
+    text: |
+      A handmade ceramic coffee mug sits centered on a white oak table against a soft grey seamless backdrop. Natural window light from the left creates a gentle shadow to the right. The camera holds static in a medium close-up. Change the mug color to matte black with a smooth ceramic glaze. Keep the wood grain, shadow position, and lighting temperature identical. No camera movement. 1:1 square, product photography, ultra-sharp focus on the mug rim. No text, no logos, no watermarks.
+    tags:
+      length: short
+      complexity: simple
+      style: photorealistic
+      quality: production-grade
+      camera: static
+      physics: none
+      refs: none
+      cost: cheap
+
+  - id: r12-seasonal-walk
+    source: "user-provided"
+    text: |
+      A woman in a cream wool coat and dark jeans walks toward camera down a neutral indoor hallway. She holds a coffee cup in her right hand. Her face, hair, clothing, and walking pace remain completely unchanged. Replace the background with a sunlit outdoor forest path covered in fallen autumn maple leaves. Add warm amber environmental light spilling onto her coat shoulders and hair edges. Soft leaf shadows dapple across her face. Camera tracks backward at walking speed. 9:16 vertical, seamless loop feel, no cuts.
+    tags:
+      length: medium
+      complexity: simple
+      style: photorealistic
+      quality: production-grade
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: medium
+
+  - id: r13-drone-cyberpunk
+    source: "user-provided"
+    text: |
+      An 8-second aerial drone shot slowly pushing forward over a dense downtown cityscape at night. Keep the exact 3D building layout, road geometry, and camera flight path locked. Transform the visual language into a neon-drenched cyberpunk environment: add holographic advertisements on building facades, wet reflective streets with puddles catching neon, drifting steam from street vents, and heavy rain falling at an angle. Lock the geometry. Do not warp or drift building shapes between frames. Teal and magenta color grade. Anamorphic lens flares from streetlights. 16:9 cinematic.
+    tags:
+      length: short
+      complexity: multi_subject
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: r14-wireless-speaker
+    source: "user-provided"
+    text: |
+      A compact black wireless speaker sits on a rain-slicked rooftop at night. Neon signs reflect across the wet surface and tiny droplets bead on the speaker grille. The camera begins in an extreme macro close-up on the droplets, then slowly pulls back to reveal the skyline. A soft blue light pulses once around the speaker rim as rain falls in slow motion. Realistic premium product commercial, shallow depth of field, vertical 9:16, no text, no logo distortion.
+    tags:
+      length: short
+      complexity: simple
+      style: photorealistic
+      quality: production-grade
+      camera: dolly
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: r15-elevator-surreal
+    source: "user-provided"
+    text: |
+      A stylish young creator in a silver metallic jacket stands in a tiny elevator lined with mirrored panels. The lights flicker once, then the elevator doors open onto a surreal midnight city street filled with glowing billboards and drifting steam. The camera tracks backward as she steps out, smiles at the camera, and raises a small camera toward the viewer. Fast social hook, cinematic but playful, crisp facial detail, smooth motion, vertical 9:16, no captions.
+    tags:
+      length: medium
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: r16-mango-asrm
+    source: "user-provided"
+    text: |
+      A chef slices a glossy ripe mango on a dark slate board under warm morning light from the upper right. Juice beads along the knife edge. Thin slices fan open in perfect rhythm. A soft breeze moves a linen napkin in the background. Macro food commercial, shallow depth of field with the knife tip in razor focus, smooth slow motion, no text overlays. Warm amber color grade, appetizing shadows.
+    tags:
+      length: short
+      complexity: simple
+      style: photorealistic
+      quality: production-grade
+      camera: static
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: r17-led-tunnel
+    source: "user-provided"
+    text: |
+      A fashion model wearing a translucent iridescent raincoat walks through a glowing tunnel of vertical blue LED light strips. The camera tracks beside her in slow motion at waist height. Water droplets sparkle on the fabric surface. High-fashion editorial look, crisp facial detail, glossy reflections on the coat, controlled runway pacing, vertical 9:16. Cool blue key light with subtle warm fill from behind.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: r18-forest-stream
+    source: "user-provided"
+    text: |
+      A quiet forest stream flows steadily over moss-covered rocks. Leaves tremble lightly in a soft breeze. Dappled sunlight shifts through the canopy creating moving caustic patterns on the water surface. Camera locked off, completely static and stable, for a seamless 4-second loop. Warm natural light, realistic color, no camera drift. Peaceful immersive ambience. 16:9 horizontal.
+    tags:
+      length: short
+      complexity: simple
+      style: photorealistic
+      quality: "4k"
+      camera: static
+      physics: fluid
+      refs: none
+      cost: cheap
+
+  - id: r19-thriller-train
+    source: "user-provided"
+    text: |
+      Use the reference images to preserve the character's face, hairstyle, jacket, and color palette exactly. Generate a new shot where the character walks through a rainy train station at night, glances over their shoulder toward camera, then disappears into a passing crowd. Smooth tracking shot at chest height. Realistic wet reflections on the platform. Moody thriller lighting with a single overhead sodium vapor light. No extra characters with the same face. 2.39:1 anamorphic.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: fluid
+      refs: image
+      cost: medium
+
+  - id: r20-rainy-portrait
+    source: "user-provided"
+    text: |
+      Cinematic close-up of a man in his 30s with a shaved head and stubble, standing still on a rain-soaked city street at night. Rain streams down his face. He stares into the distance with exhausted resolve. Neon signs reflect pink and blue on the wet pavement behind him. Shallow depth of field. Slow push-in over 5 seconds. Anamorphic lens flares from passing car headlights. Cool blue tones with warm neon accents. Ultra-realistic 4K, film grain, 85mm lens aesthetic.
+    tags:
+      length: short
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: b4-01-cyberpunk-heist
+    source: "user-provided"
+    text: |
+      Continuous 10-second narrative shot. [0:00-0:03] Close-up on leather-gloved hands picking a digital lock on a dark metal door; blue circuit light ripples across the keypad. [0:02-0:06] Smooth whip-pan left to reveal a crouched operative looking over their shoulder down a flickering neon-lit alleyway as rain falls. [0:06-0:10] The door slides open, casting warm interior light across the character's face. The camera tracks behind the character as they step inside, ending in a wide interior shot. 24fps, anamorphic 2.39:1, realistic physics.
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: fluid
+      refs: none
+      cost: expensive
+
+  - id: b4-02-arch-reveal
+    source: "user-provided"
+    text: |
+      8-second continuous camera motion through a minimalist villa. [0:00-0:02] Static wide shot of a dark concrete hallway at twilight. [0:02-0:04] Sunlight breaks through the ceiling slats, casting geometric light beams across the floor as the camera begins a slow push-forward. [0:04-0:06] Camera crosses the threshold into a double-height living room overlooking an infinity pool. [0:06-0:08] Slow tilt up toward the sunset sky, dust motes visible in the warm light beams. 60fps, Architectural Digest aesthetic, smooth tracking.
+    tags:
+      length: multi_stage
+      complexity: multi_stage
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: b4-03-pixar-creature
+    source: "user-provided"
+    text: |
+      3D animated feature film quality. A wide-eyed, furry blue creature with large expressive ears sits atop a pile of glowing brass gears. The creature sneezes violently in slow motion, sending small glowing sparks flying everywhere. Squash and stretch principles applied to facial animation, soft subsurface scattering on skin, micro-fur dynamics, rim light, ray-traced lighting, 24fps.
+    tags:
+      length: medium
+      complexity: simple
+      style: "3d"
+      quality: production-grade
+      camera: static
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: b4-04-sakuga-samurai
+    source: "user-provided"
+    text: |
+      High-budget anime production shot (ufotable style). Close-up of a samurai drawing a Katana coated in glowing blue flame. Dynamic line art, dramatic hand-drawn impact frames, speed lines in background. As the blade swings, fluid fire trailing effect sweeps across the screen in 2D hand-drawn aesthetic. 12fps character animation on 24fps background panning, vibrant cell shading, high contrast.
+    tags:
+      length: short
+      complexity: simple
+      style: animation
+      quality: production-grade
+      camera: static
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: b4-05-threejs-sculpture
+    source: "user-provided"
+    text: |
+      Real-time 3D WebGL render aesthetic. An abstract geometric sculpture composed of glass tetrahedrons orbiting a glowing core. Chromatic aberration along the glass edges, bloom effects on emissive nodes, low-poly wireframe overlay fading in and out. Smooth 360-degree camera spin, dark environment, real-time reflection mapping, 60fps fluid frame rate.
+    tags:
+      length: short
+      complexity: simple
+      style: "3d"
+      quality: production-grade
+      camera: orbital
+      physics: basic
+      refs: none
+      cost: medium
+
+  - id: b4-06-octane-watch
+    source: "user-provided"
+    text: |
+      Hyper-detailed 3D CAD visualization. Exploded-view animation of a complex mechanical watch movement. Gears, escape wheels, and rubies pull apart slowly along the z-axis, hovering in space while spinning at synchronized speeds. Brushed titanium and polished gold material shaders, studio softbox lighting, ambient occlusion, depth-of-field blur on non-focused gear trains.
+    tags:
+      length: medium
+      complexity: simple
+      style: "3d"
+      quality: production-grade
+      camera: static
+      physics: basic
+      refs: none
+      cost: expensive
+
+  - id: b4-07-neural-net-title
+    source: "user-provided"
+    text: |
+      3D kinetic motion graphics title reveal. Bold white sans-serif typography spelling "NEURAL NET" breaking out of a dark glass surface. Glitch artifacts, digital noise displacement, floating HUD UI elements, vector grid lines expanding in background. Fast whip-pan transitions, high contrast, 60fps, vector graphics look.
+    tags:
+      length: short
+      complexity: simple
+      style: motion_graphics
+      quality: "4k"
+      camera: static
+      physics: none
+      refs: none
+      cost: medium
+
+  - id: b4-08-data-viz
+    source: "user-provided"
+    text: |
+      Clean corporate motion graphics. A isometric 3D glowing bar chart rising out of a matte dark slate grid. Translucent data streams (cyan and magenta glowing dots) flow along vector pathways connecting the bars. Smooth isometric camera tracking, minimal soft shadows, polished UI overlay, 4K rendering.
+    tags:
+      length: medium
+      complexity: simple
+      style: motion_graphics
+      quality: "4k"
+      camera: tracking
+      physics: none
+      refs: none
+      cost: medium
+
+  - id: b4-09-motion-transfer
+    source: "user-provided"
+    text: |
+      [Inputs: Motion Reference = @Video1, Audio Track = @Audio1] Master Multi-Modal Execution: Replicate the exact camera dolly speed and character choreography from @Video1. Subject: A medieval knight in full plate armor replacing the modern dancer in @Video1. Motion: Synchronize armor footsteps, heavy weapon impacts, and character turns precisely to the rhythmic bass drops in @Audio1. Environment: A damp stone courtyard with fire torches flickering. Specular highlights on polished steel armor, sparks flying on impact beats. 1080p, 24fps.
+    tags:
+      length: medium
+      complexity: multi_subject
+      style: cinematic
+      quality: production-grade
+      camera: dolly
+      physics: particle
+      refs: video
+      cost: expensive
+
+  - id: b4-10-multishot-ref
+    source: "user-provided"
+    text: |
+      [Inputs: Character = @Image1, Camera Motion = @Video1, Background Audio = @Audio1] Dynamic Music Video Shot: Character @Image1 performs the tracking camera movement and facial framing defined in @Video1. Lighting & Audio Sync: The lighting shifts between warm amber and deep violet in direct rhythm with the synth pads in @Audio1. Maintain facial structure and clothing details from @Image1 across the 8-second generation without drift. Photorealistic, 16:9 ratio.
+    tags:
+      length: medium
+      complexity: simple
+      style: cinematic
+      quality: production-grade
+      camera: tracking
+      physics: basic
+      refs: image
+      cost: expensive
+
+  - id: b4-11-headphones-turntable
+    source: "user-provided"
+    text: |
+      360-degree turntable shot of a matte-white wireless headphone on a black background. Studio softbox key light, subtle specular highlight, clean loop, photorealistic, 4k.
+    tags:
+      length: short
+      complexity: simple
+      style: photorealistic
+      quality: "4k"
+      camera: orbital
+      physics: none
+      refs: none
+      cost: cheap
+
+  - id: b4-12-drone-ridge
+    source: "user-provided"
+    text: |
+      Drone shot over forest mountain ridge at sunrise, morning fog in valleys, golden hour lighting, 24fps, cinematic 4k.
+    tags:
+      length: short
+      complexity: simple
+      style: cinematic
+      quality: "4k"
+      camera: tracking
+      physics: basic
+      refs: none
+      cost: cheap
+
+  - id: b4-13-anime-rain-window
+    source: "user-provided"
+    text: |
+      Anime style, rain falling on a windowpane at night, city neon lights blurred in background, lo-fi aesthetic, smooth 2D loop.
+    tags:
+      length: short
+      complexity: simple
+      style: animation
+      quality: basic
+      camera: static
+      physics: fluid
+      refs: none
+      cost: cheap
+
+  - id: b4-14-cyber-detective
+    source: "user-provided"
+    text: |
+      Medium shot, cyberpunk cyber-detective walking through rain, neon reflections, tracking camera back, cinematic lighting, 24fps.
+    tags:
+      length: short
+      complexity: simple
+      style: cinematic
+      quality: basic
+      camera: tracking
+      physics: fluid
+      refs: none
+      cost: cheap
+
+  - id: b4-15-blue-liquid-splash
+    source: "user-provided"
+    text: |
+      Slow motion 120fps splash of glowing blue liquid against a dark surface, high fluid physics, studio light, crisp focus.
+    tags:
+      length: short
+      complexity: simple
+      style: photorealistic
+      quality: basic
+      camera: static
+      physics: fluid
+      refs: none
+      cost: cheap
+
+  - id: b4-16-glass-ribbons
+    source: "user-provided"
+    text: |
+      Geometric dark glass ribbons twisting in 3D space, chromatic edges, soft directional lighting, smooth 60fps loop.
+    tags:
+      length: short
+      complexity: simple
+      style: motion_graphics
+      quality: basic
+      camera: static
+      physics: none
+      refs: none
+      cost: cheap
