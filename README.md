@@ -59,12 +59,8 @@ git clone https://github.com/xDarkicex/switchboard
 cd switchboard
 go build -o switchboard ./cmd/switchboard
 
-# Generate training data and train the 8-model pipeline
-./switchboard synth --preset ./presets/video/synth.yaml \
-  --real ./presets/video/real_prompts.yaml \
-  --per-intent 1500 --output ./presets/video/training.txt
-
-go run ./scripts/train-pipeline
+# Fetch pre-trained models from Hugging Face
+hf download LibraVDB/switchboard-video-v1 --local-dir ./models
 
 # Come on duty
 ./switchboard serve --config ./switchboard.yaml
