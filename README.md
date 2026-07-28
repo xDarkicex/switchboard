@@ -281,6 +281,16 @@ switchboard patching --target http://localhost:9090 "quick clip of a sunset"
 Sends a query to the running proxy and displays the operator's routing
 decision — provider, model, and classified dimension tags.
 
+<br>
+
+### Agent skill
+
+A [`SKILL.md`](SKILL.md) is included at the repo root. Load it into
+[Hermes](https://github.com/nousresearch/hermes-agent),
+[OpenClaw](https://github.com/openclaw/openclaw), or any agent that
+supports skill files — it teaches the agent how to configure providers,
+write routing rules, add models, and train new classifiers.
+
 ## Roadmap
 
 - [x] 8-dimension video generation classifier pipeline
