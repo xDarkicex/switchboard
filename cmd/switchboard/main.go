@@ -19,7 +19,7 @@ steady model, and patches the call through to the right upstream backend.
 
 The architecture is vintage: every internal package is named after a piece of
 the operator's equipment. The code is fast, the names are fun.`,
-	Version:      "0.1.0",
+	Version:      "0.1.1",
 	SilenceUsage: true,
 }
 
