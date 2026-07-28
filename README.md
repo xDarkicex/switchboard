@@ -168,9 +168,18 @@ server:
   listen: ":8080"
 
 pipeline:
-  style:  { model_path: "./models/style.bin",  default: cinematic, labels: [cinematic, photorealistic, animation, "3d", motion_graphics] }
-  length: { model_path: "./models/length.bin", default: medium,   labels: [short, medium, long, multi_stage] }
-  # ... 6 more dimensions
+  length:     { model_path: "./models/length.bin",     default: medium,    labels: [short, medium, long, multi_stage] }
+  complexity: { model_path: "./models/complexity.bin", default: simple,    labels: [simple, multi_subject, multi_stage, medium] }
+  style:      { model_path: "./models/style.bin",      default: cinematic, labels: [cinematic, photorealistic, animation, "3d", motion_graphics] }
+  quality:    { model_path: "./models/quality.bin",    default: "4k",      labels: ["4k", "8k", basic, production-grade] }
+  camera:     { model_path: "./models/camera.bin",     default: dolly,     labels: [static, dolly, tracking, orbital, fpv] }
+  physics:    { model_path: "./models/physics.bin",    default: basic,     labels: [none, basic, particle, fluid, cloth] }
+  refs:       { model_path: "./models/refs.bin",       default: none,      labels: [none, image, video, audio, multi] }
+  cost:       { model_path: "./models/cost.bin",       default: medium,    labels: [cheap, medium, expensive] }
+
+> **Label order is critical.** The `labels` array must match the canonical
+> order in `scripts/train-pipeline/main.go`. Mismatched order causes the
+> classifier to return wrong label names. Use the exact values above.
 
 routing: "./presets/video/routing.yaml"
 
