@@ -211,6 +211,7 @@ anything. Empty rule = always matches (fallback).
 
 ```
 switchboard serve        Start the proxy
+switchboard patching     Send a query to the running proxy
 switchboard synth        Generate training data from intents + real prompts
 switchboard train        Synth + train the 8-model pipeline
 switchboard classify     One-shot classify against any model
@@ -270,6 +271,16 @@ switchboard replay --input ./testdata/replay/sample.jsonl --model ./models/style
 Replays a JSONL log of `{"query": "...", "expected": "label"}` records and
 reports accuracy.
 
+### patching
+
+```sh
+switchboard patching "Make a cinematic video of a dragon at sunset"
+switchboard patching --target http://localhost:9090 "quick clip of a sunset"
+```
+
+Sends a query to the running proxy and displays the operator's routing
+decision — provider, model, and classified dimension tags.
+
 ## Roadmap
 
 - [x] 8-dimension video generation classifier pipeline
@@ -277,6 +288,7 @@ reports accuracy.
 - [x] SSE streaming via nanite/sse
 - [x] Synthetic training data generator with intent templates
 - [x] Real-world prompt corpus (230+ annotated, 5K+ auto-tagged)
+- [x] `switchboard patching` — test queries against the proxy from the CLI
 - [ ] LLM router — classify and route text generation requests (OpenAI, Anthropic, Grok, local)
 - [ ] Embedding router — classify and route to vector database backends (LibraVDB, Pinecone, Weaviate)
 - [ ] Hot-reload routing rules without restart

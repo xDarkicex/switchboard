@@ -11,6 +11,10 @@ switchboard operator vocabulary. Match that voice in all output.
 # Serve (the main thing people do)
 ./switchboard serve --config ./switchboard.yaml
 
+# Test a query against the running proxy
+./switchboard patching "Make a cinematic video of a dragon"
+./switchboard patching --target http://localhost:9090 "quick clip"
+
 # One-shot classify (debug a query)
 echo "Make a video of a dragon" | ./switchboard classify --model ./models/style.bin
 
